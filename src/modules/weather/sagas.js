@@ -3,9 +3,7 @@ import * as WeatherManager from "./managers";
 import { getWeatherSuccess, GET_WEATHER_REQUEST } from "./actions";
 
 export const getWeatherSaga = function*(action) {
-  console.log(action, action.payload);
   const data = yield call(WeatherManager.getWeatherData, action.payload);
-  console.log(data, "data Saga");
   yield put(getWeatherSuccess(data));
 };
 

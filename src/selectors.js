@@ -1,6 +1,5 @@
 import * as R from "ramda";
-
-const getCityWeather = R.prop("cityWeather");
+export const getCityWeather = R.prop("cityWeather");
 
 export const getCityIsLoading = R.pipe(
   getCityWeather,
@@ -12,7 +11,7 @@ export const getCityWeatherInfo = R.pipe(
   R.prop("cityWeatherInfo")
 );
 
-const getWeather = R.prop("weather");
+export const getWeather = R.prop("weather");
 
 export const getWeatherIsLoading = R.pipe(
   getWeather,
@@ -26,4 +25,4 @@ export const getWeatherInfo = R.pipe(
 // TODO: написать модули //DONE
 // TODO: нaписать селекторы //DONE
 // TODO: положить в стэйт значение инпута в фэйворитс и использовать reselect для выборки данных
-// TODO: написать тест для редьюсеров и селекторов
+// TODO: написать тест для редьюсеров//DONE и селекторов

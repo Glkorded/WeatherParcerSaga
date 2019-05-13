@@ -1,7 +1,7 @@
-import { isLoading, weatherInfo } from "./reducer";
+import { isLoading, cityWeatherInfo } from "./reducer";
 
 const mockIsLoadingAction = {
-  type: "GET_WEATHER_REQUEST"
+  type: "GET_CITY_WEATHER_REQUEST"
 };
 
 describe("Is loading reducer", () => {
@@ -11,12 +11,12 @@ describe("Is loading reducer", () => {
 });
 
 const mockWeatherInfoAction = {
-  type: "GET_WEATHER_SUCCESS",
+  type: "GET_CITY_WEATHER_SUCCESS",
   payload: { a: 1, b: 2 }
 };
 
 describe("Weather info reducer", () => {
   it("Should change state", () => {
-    expect(weatherInfo([], mockWeatherInfoAction)).toEqual({ a: 1, b: 2 });
+    expect(cityWeatherInfo([], mockWeatherInfoAction)).toEqual({ a: 1, b: 2 });
   });
 });

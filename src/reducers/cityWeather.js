@@ -1,6 +1,6 @@
 import { GET_CITY_WEATHER_SUCCESS } from "../actions";
 import { combineReducers } from "redux";
-import { handleAction, handleActions, combineActions } from "redux-actions";
+import { handleAction, handleActions } from "redux-actions";
 
 const cityWeatherInfo = handleAction(
   GET_CITY_WEATHER_SUCCESS,

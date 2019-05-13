@@ -1,27 +1,20 @@
-import { GET_CITY_WEATHER_SUCCESS, GET_CITY_WEATHER_REQUEST } from "../actions";
+import { GET_CITY_WEATHER_SUCCESS } from "../actions";
 import { combineReducers } from "redux";
+import { handleAction, handleActions, combineActions } from "redux-actions";
 
-const cityWeatherInfo = (state = [], action) => {
-  switch (action.type) {
-    case GET_CITY_WEATHER_SUCCESS:
-      return action.payload;
+const cityWeatherInfo = handleAction(
+  GET_CITY_WEATHER_SUCCESS,
+  (state, action) => action.payload,
+  []
+);
 
-    default:
-      return state;
-  }
-};
-
-const isLoading = (state = false, action) => {
-  switch (action.type) {
-    case GET_CITY_WEATHER_REQUEST:
-      return true;
-    case GET_CITY_WEATHER_SUCCESS:
-      return false;
-
-    default:
-      return state;
-  }
-};
+const isLoading = handleActions(
+  {
+    GET_WEATHER_REQUEST: (state, action) => true,
+    GET_WEATHER_SUCCESS: (state, action) => false
+  },
+  false
+);
 
 const cityWeather = combineReducers({
   cityWeatherInfo,

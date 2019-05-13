@@ -4,7 +4,10 @@ import { getCityWeatherRequest } from "../modules/cityWeather/actions";
 import DetailedCity from "../components/CityWeatherInfo";
 import styled from "styled-components";
 import * as R from "ramda";
-import { getCityIsLoading, getCityWeatherInfo } from "../selectors";
+import {
+  getCityIsLoading,
+  getCityWeatherInfo
+} from "../modules/cityWeather/selectors";
 
 const Table = styled.table`
   display: flex;

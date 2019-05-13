@@ -5,7 +5,10 @@ import SingleCity from "../components/WeatherInfo";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import * as R from "ramda";
-import { getWeatherInfo, getWeatherIsLoading } from "../selectors";
+import {
+  getWeatherInfo,
+  getWeatherIsLoading
+} from "../modules/weather/selectors";
 
 const DataLink = styled(Link)`
   font-size: 18px;

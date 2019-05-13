@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getCityWeatherRequest } from "../actions";
+import { getCityWeatherRequest } from "../modules/cityWeather/actions";
 import DetailedCity from "../components/CityWeatherInfo";
 import styled from "styled-components";
+import * as R from "ramda";
+import { getCityIsLoading, getCityWeatherInfo } from "../selectors";
 
 const Table = styled.table`
   display: flex;
@@ -48,18 +50,14 @@ class DetailedCitySearch extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isLoading: state.cityWeather.isLoading,
-    cityWeatherInfo: state.cityWeather.cityWeatherInfo
-  };
-};
-
 const mapDispatchToProps = {
   getCityWeatherRequest
 };
 
 export default connect(
-  mapStateToProps,
+  R.applySpec({
+    isLoading: getCityIsLoading,
+    cityWeatherInfo: getCityWeatherInfo
+  }),
   mapDispatchToProps
 )(DetailedCitySearch);

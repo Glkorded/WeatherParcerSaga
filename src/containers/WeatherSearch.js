@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getWeatherRequest } from "../actions";
+import { getWeatherRequest } from "../modules/weather/actions";
 import SingleCity from "../components/WeatherInfo";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import * as R from "ramda";
+import { getWeatherInfo, getWeatherIsLoading } from "../selectors";
 
 const DataLink = styled(Link)`
   font-size: 18px;
@@ -135,18 +137,14 @@ class SingleCitySearch extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isLoading: state.weather.isLoading,
-    weatherInfo: state.weather.weatherInfo
-  };
-};
-
 const mapDispatchToProps = {
   getWeatherRequest
 };
 
 export default connect(
-  mapStateToProps,
+  R.applySpec({
+    isLoading: getWeatherIsLoading,
+    weatherInfo: getWeatherInfo
+  }),
   mapDispatchToProps
 )(SingleCitySearch);

@@ -10,8 +10,8 @@ const cityWeatherInfo = handleAction(
 
 const isLoading = handleActions(
   {
-    GET_WEATHER_REQUEST: (state, action) => true,
-    GET_WEATHER_SUCCESS: (state, action) => false
+    GET_CITY_WEATHER_REQUEST: (state, action) => true,
+    GET_CITY_WEATHER_SUCCESS: (state, action) => false
   },
   false
 );

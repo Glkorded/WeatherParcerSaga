@@ -1,7 +1,22 @@
-import { GET_WEATHER_SUCCESS, GET_WEATHER_REQUEST } from "../actions";
+import { GET_WEATHER_SUCCESS /*GET_WEATHER_REQUEST*/ } from "../actions";
 import { combineReducers } from "redux";
+import { handleAction, handleActions, combineActions } from "redux-actions";
 
-const weatherInfo = (state = [], action) => {
+const weatherInfo = handleAction(
+  GET_WEATHER_SUCCESS,
+  (state, action) => action.payload,
+  []
+);
+
+const isLoading = handleActions(
+  {
+    GET_WEATHER_REQUEST: (state, action) => true,
+    GET_WEATHER_SUCCESS: (state, action) => false
+  },
+  false
+);
+
+/*const weatherInfo = (state = [], action) => {
   switch (action.type) {
     case GET_WEATHER_SUCCESS:
       return action.payload;
@@ -21,7 +36,7 @@ const isLoading = (state = false, action) => {
     default:
       return state;
   }
-};
+};*/
 
 const weather = combineReducers({
   weatherInfo,

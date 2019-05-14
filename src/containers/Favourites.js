@@ -2,6 +2,17 @@ import React, { Component } from "react";
 import SingleCity from "../components/WeatherInfo";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import {
+  getLocalStorageInfo,
+  getInputInfo,
+  getFilteredInfo
+} from "../modules/favourites/selectors";
+import {
+  getToLocalStorageRequest,
+  getInputRequest
+} from "../modules/favourites/actions";
+import * as R from "ramda";
+import { connect } from "react-redux";
 
 const DataLink = styled(Link)`
   font-size: 18px;
@@ -54,15 +65,11 @@ const Input = styled.input`
 class Favourites extends Component {
   constructor(props) {
     super(props);
-    this.state = { data: [], inputField: "" };
+    this.state = { data: [] };
   }
 
   componentDidMount() {
-    if (JSON.parse(localStorage.getItem("favouriteData")) !== null) {
-      this.setState({
-        data: JSON.parse(localStorage.getItem("favouriteData"))
-      });
-    }
+    this.props.getToLocalStorageRequest();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -72,15 +79,13 @@ class Favourites extends Component {
   }
 
   handleChange = e => {
-    this.setState({
-      inputField: e.target.value
-    });
+    this.props.getInputRequest(e.target.value);
   };
 
   filterFunction = elem => {
     if (this.state.inputField !== "") {
       if (
-        elem.title.toLowerCase().includes(this.state.inputField.toLowerCase())
+        elem.title.toLowerCase().includes(this.props.inputInfo.toLowerCase())
       ) {
         return true;
       }
@@ -96,7 +101,7 @@ class Favourites extends Component {
         <SubTitle>Feel free to work with your favourited cities!</SubTitle>
         <Input onChange={this.handleChange} className="input" />
         <div>
-          {this.state.data.filter(this.filterFunction).map((single, index) => (
+          {this.props.filteredInfo.map((single, index) => (
             <div key={single.woeid}>
               <DataLink to={`../detailed_search/${single.woeid}`}>
                 {single.title}
@@ -121,4 +126,16 @@ class Favourites extends Component {
   }
 }
 
-export default Favourites;
+const mapDispatchToProps = {
+  getToLocalStorageRequest,
+  getInputRequest
+};
+
+export default connect(
+  R.applySpec({
+    localStorageInfo: getLocalStorageInfo,
+    inputInfo: getInputInfo,
+    filteredInfo: getFilteredInfo
+  }),
+  mapDispatchToProps
+)(Favourites);

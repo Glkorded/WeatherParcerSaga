@@ -1,5 +1,6 @@
-import { GET_TO_LOCAL_STORAGE_SUCCESS } from "./actions";
+import { GET_INPUT_SUCCESS, GET_TO_LOCAL_STORAGE_SUCCESS } from "./actions";
 import { handleAction } from "redux-actions";
+import { combineReducers } from "redux";
 
 export const localStorageInfo = handleAction(
   GET_TO_LOCAL_STORAGE_SUCCESS,
@@ -7,4 +8,15 @@ export const localStorageInfo = handleAction(
   []
 );
 
-export default localStorageInfo;
+export const inputInfo = handleAction(
+  GET_INPUT_SUCCESS,
+  (state, action) => action.payload,
+  ""
+);
+
+const favourites = combineReducers({
+  localStorageInfo,
+  inputInfo
+});
+
+export default favourites;

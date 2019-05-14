@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getWeatherRequest } from "../modules/weather/actions";
+import { getToLocalStorageRequest } from "../modules/favourites/actions";
 import SingleCity from "../components/WeatherInfo";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -76,7 +77,6 @@ class SingleCitySearch extends Component {
 
   componentDidMount() {
     this.props.getWeatherRequest("San");
-
     if (JSON.parse(localStorage.getItem("favouriteData")) !== null) {
       this.setState({
         favourites: JSON.parse(localStorage.getItem("favouriteData"))
@@ -85,13 +85,12 @@ class SingleCitySearch extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // if (this.state.inputField !== prevState.inputField) {
-    //}
     if (this.state.favourites !== prevState.favourites) {
       localStorage.setItem(
         "favouriteData",
         JSON.stringify(this.state.favourites)
       ); //Here we set favourites to localStorage
+      this.props.getToLocalStorageRequest();
     }
   }
 
@@ -141,7 +140,8 @@ class SingleCitySearch extends Component {
 }
 
 const mapDispatchToProps = {
-  getWeatherRequest
+  getWeatherRequest,
+  getToLocalStorageRequest
 };
 
 export default connect(

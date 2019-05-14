@@ -1,7 +1,7 @@
-import api from "../../api";
+import { proxy, url } from "../../api";
 
 export const getCityWeatherData = cityId =>
-  fetch(api.getDetailedData(cityId))
+  fetch(`${proxy}${url}/location/${cityId}`)
     .then(response => {
       if (!response.ok) {
         throw Error(response.statusText);

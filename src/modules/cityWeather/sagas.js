@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import * as WeatherManager from "./managers";
+import * as WeatherManager from "./Manager";
 import { getCityWeatherSuccess, getCityWeatherRequest } from "./duck";
 
 const getCityWeatherSaga = function*(action) {

@@ -31,8 +31,8 @@ export const getCityWeatherInfo = R.pipe(
 
 export const isLoading = handleActions(
   {
-    [getCityWeatherRequest]: R.T,
-    [getCityWeatherSuccess]: R.F
+    [getCityWeatherRequest]: () => true,
+    [getCityWeatherSuccess]: () => false
   },
   false
 );

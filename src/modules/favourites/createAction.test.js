@@ -1,5 +1,3 @@
-import { items } from "./duck";
-
 const createAction = type => {
   const action = payload => {
     return { type: type, payload: payload };

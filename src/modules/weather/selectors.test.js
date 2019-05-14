@@ -1,5 +1,4 @@
-import * as R from "ramda";
-import { getWeather, getWeatherInfo, getWeatherIsLoading } from "./selectors";
+import { getWeather, getWeatherInfo, getWeatherIsLoading } from "./duck";
 
 const getWeatherMock = { weather: { isLoading: false, weatherInfo: "Works" } };
 

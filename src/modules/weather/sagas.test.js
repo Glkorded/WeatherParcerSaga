@@ -1,5 +1,5 @@
 import { getWeatherSaga } from "./sagas";
-import { getWeatherData } from "./managers";
+import { getWeatherData } from "./Manager";
 import { call } from "redux-saga/effects";
 
 describe("sagas", () => {

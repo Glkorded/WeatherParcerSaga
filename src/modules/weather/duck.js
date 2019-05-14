@@ -2,11 +2,16 @@ import * as R from "ramda";
 import { combineReducers } from "redux";
 import { createAction, handleAction, handleActions } from "redux-actions";
 
+export const getWeather = R.prop("weather");
+const moduleName = "WEATHER/";
 // TODO:
-type => createAction(moduleName + type);
-export const getWeatherRequest = createAction("WEATHER/GET_WEATHER_REQUEST");
-export const getWeatherSuccess = createAction("WEATHER/GET_WEATHER_SUCCESS");
-export const getWeatherFailure = createAction("WEATHER/GET_WEATHER_FAILURE");
+const create = type => createAction(moduleName + type);
+
+//==========================================================================
+
+export const getWeatherRequest = create("GET_WEATHER_REQUEST");
+export const getWeatherSuccess = create("GET_WEATHER_SUCCESS");
+export const getWeatherFailure = create("GET_WEATHER_FAILURE");
 
 export const weatherInfo = handleAction(
   getWeatherSuccess,
@@ -14,13 +19,27 @@ export const weatherInfo = handleAction(
   []
 );
 
+export const getWeatherInfo = R.pipe(
+  getWeather,
+  R.prop("weatherInfo")
+);
+
+//==========================================================================
+
 export const isLoading = handleActions(
   {
     [getWeatherRequest]: () => true,
-    [getWeatherSuccess]: R.F
+    [getWeatherSuccess]: () => false
   },
   false
 );
+
+export const getWeatherIsLoading = R.pipe(
+  getWeather,
+  R.prop("isLoading")
+);
+
+//==========================================================================
 
 const weather = combineReducers({
   weatherInfo,
@@ -28,15 +47,3 @@ const weather = combineReducers({
 });
 
 export default weather;
-
-export const getWeather = R.prop("weather");
-
-export const getWeatherIsLoading = R.pipe(
-  getWeather,
-  R.prop("isLoading")
-);
-
-export const getWeatherInfo = R.pipe(
-  getWeather,
-  R.prop("weatherInfo")
-);

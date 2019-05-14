@@ -1,5 +1,5 @@
 import * as R from "ramda";
 
-const pipeP = R.pipeWith(R.then);
+const pipeP = (...args) => R.pipeWith(R.then)(args);
 
 export default pipeP;

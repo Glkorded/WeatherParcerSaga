@@ -1,4 +1,3 @@
-import * as R from "ramda";
 import { proxy, url } from "../../api";
 import pipeP from "../../utils";
 

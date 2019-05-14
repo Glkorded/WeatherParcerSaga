@@ -1,9 +1,5 @@
 import * as R from "ramda";
-import {
-  getCityWeather,
-  getCityWeatherInfo,
-  getCityIsLoading
-} from "./selectors";
+import { getCityWeather, getCityWeatherInfo, getCityIsLoading } from "./duck";
 
 const getCityWeatherMock = {
   cityWeather: { isLoading: false, cityWeatherInfo: "Works" }

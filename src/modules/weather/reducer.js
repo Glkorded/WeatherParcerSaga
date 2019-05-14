@@ -1,4 +1,4 @@
-import { GET_WEATHER_SUCCESS } from "./actions";
+import { GET_WEATHER_SUCCESS, getWeatherRequest } from "./actions";
 import { combineReducers } from "redux";
 import { handleAction, handleActions } from "redux-actions";
 
@@ -10,7 +10,7 @@ export const weatherInfo = handleAction(
 
 export const isLoading = handleActions(
   {
-    GET_WEATHER_REQUEST: (state, action) => true,
+    [getWeatherRequest]: (state, action) => true,
     GET_WEATHER_SUCCESS: (state, action) => false
   },
   false

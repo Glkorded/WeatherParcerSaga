@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getCityWeatherRequest } from "../modules/cityWeather/actions";
+import { getCityWeatherRequest } from "../modules/cityWeather/duck";
 import DetailedCity from "../components/CityWeatherInfo";
 import styled from "styled-components";
 import * as R from "ramda";
 import {
   getCityIsLoading,
   getCityWeatherInfo
-} from "../modules/cityWeather/selectors";
+} from "../modules/cityWeather/duck";
 
 const Table = styled.table`
   display: flex;

@@ -2,12 +2,16 @@ import { GET_INPUT_SUCCESS, GET_TO_LOCAL_STORAGE_SUCCESS } from "./actions";
 import { handleAction } from "redux-actions";
 import { combineReducers } from "redux";
 
-export const localStorageInfo = handleAction(
+// actions
+export const items = handleAction(
   GET_TO_LOCAL_STORAGE_SUCCESS,
   (state, action) => action.payload,
   []
 );
 
+// selector
+
+// actions
 export const inputInfo = handleAction(
   GET_INPUT_SUCCESS,
   (state, action) => action.payload,
@@ -15,7 +19,7 @@ export const inputInfo = handleAction(
 );
 
 const favourites = combineReducers({
-  localStorageInfo,
+  items,
   inputInfo
 });
 

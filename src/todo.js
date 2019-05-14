@@ -1,4 +1,5 @@
-// TODO: написать модули //DONE
-// TODO: нaписать селекторы //DONE
-// TODO: написать тест для редьюсеров и селекторов//DONE
-// TODO: положить в стэйт значение инпута в фэйворитс и использовать reselect для выборки данных //DONE
+//TODO: Actions+reducers+selectors
+//TODO: Root sagas
+//TODO: TDD
+//TODO: Single source of truth for containers
+//TODO:

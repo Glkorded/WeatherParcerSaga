@@ -1,4 +1,4 @@
-import { isLoading, cityWeatherInfo } from "./reducer";
+import { isLoading, cityWeatherInfo } from "./duck";
 
 const mockIsLoadingAction = {
   type: "GET_CITY_WEATHER_REQUEST"

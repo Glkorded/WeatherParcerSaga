@@ -3,7 +3,8 @@ import {
   GET_INPUT_REQUEST,
   getInputSuccess,
   GET_TO_LOCAL_STORAGE_REQUEST,
-  getToLocalStorageSuccess
+  getToLocalStorageSuccess,
+  getInputRequest
 } from "./actions";
 
 const getToTheLocalStorageSaga = function*() {
@@ -21,10 +22,16 @@ const getInputSaga = function*(action) {
 };
 
 const getInputSagaWatcher = function*() {
-  yield takeLatest(GET_INPUT_REQUEST, getInputSaga);
+  // TODO: on action
+  yield takeLatest(getInputRequest, getInputSaga);
+  console.log(123);
 };
 
+// TODO: rename
 const rootSaga = function*() {
+  // TODO: retyping
+  // yield call(getToTheLocalStorageSaga);
+  // yield;
   yield all([getToTheLocalStorageSagaWatcher(), getInputSagaWatcher()]);
 };
 

@@ -1,6 +1,6 @@
 import { call, put, takeLatest, all } from "redux-saga/effects";
 import * as WeatherManager from "./managers";
-import { getWeatherSuccess, GET_WEATHER_REQUEST } from "./actions";
+import { getWeatherSuccess, getWeatherRequest } from "./duck";
 
 export const getWeatherSaga = function*(action) {
   const data = yield call(WeatherManager.getWeatherData, action.payload);
@@ -8,7 +8,7 @@ export const getWeatherSaga = function*(action) {
 };
 
 const getWeatherSagaWatcher = function*() {
-  yield takeLatest(GET_WEATHER_REQUEST, getWeatherSaga);
+  yield takeLatest(getWeatherRequest, getWeatherSaga);
 };
 
 const rootSaga = function*() {

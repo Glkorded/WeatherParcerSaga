@@ -3,14 +3,12 @@ import SingleCity from "../components/WeatherInfo";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import {
-  getLocalStorageInfo,
+  getItems,
   getInputInfo,
-  getFilteredInfo
-} from "../modules/favourites/selectors";
-import {
-  getToLocalStorageRequest,
+  getFilteredInfo,
+  getFavouritesRequest,
   getInputRequest
-} from "../modules/favourites/actions";
+} from "../modules/favourites/duck";
 import * as R from "ramda";
 import { connect } from "react-redux";
 
@@ -69,7 +67,7 @@ class Favourites extends Component {
   }
 
   componentDidMount() {
-    this.props.getToLocalStorageRequest();
+    this.props.getFavouritesRequest();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -127,13 +125,13 @@ class Favourites extends Component {
 }
 
 const mapDispatchToProps = {
-  getToLocalStorageRequest,
+  getFavouritesRequest,
   getInputRequest
 };
 
 export default connect(
   R.applySpec({
-    localStorageInfo: getLocalStorageInfo,
+    items: getItems,
     inputInfo: getInputInfo,
     filteredInfo: getFilteredInfo
   }),

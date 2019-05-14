@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getWeatherRequest } from "../modules/weather/actions";
-import { getToLocalStorageRequest } from "../modules/favourites/actions";
+import { getFavouritesRequest } from "../modules/favourites/duck";
 import SingleCity from "../components/WeatherInfo";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import * as R from "ramda";
 import {
   getWeatherInfo,
-  getWeatherIsLoading
-} from "../modules/weather/selectors";
+  getWeatherIsLoading,
+  getWeatherRequest
+} from "../modules/weather/duck";
 
 const DataLink = styled(Link)`
   font-size: 18px;
@@ -90,7 +90,7 @@ class SingleCitySearch extends Component {
         "favouriteData",
         JSON.stringify(this.state.favourites)
       ); //Here we set favourites to localStorage
-      this.props.getToLocalStorageRequest();
+      this.props.getFavouritesRequest();
     }
   }
 
@@ -141,7 +141,7 @@ class SingleCitySearch extends Component {
 
 const mapDispatchToProps = {
   getWeatherRequest,
-  getToLocalStorageRequest
+  getFavouritesRequest
 };
 
 export default connect(

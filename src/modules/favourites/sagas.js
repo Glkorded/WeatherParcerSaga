@@ -1,19 +1,18 @@
 import { put, takeLatest, all } from "redux-saga/effects";
 import {
-  GET_INPUT_REQUEST,
+  getInputRequest,
   getInputSuccess,
-  GET_TO_LOCAL_STORAGE_REQUEST,
-  getToLocalStorageSuccess,
-  getInputRequest
-} from "./actions";
+  getFavouritesRequest,
+  getFavouritesSuccess
+} from "./duck";
 
 const getToTheLocalStorageSaga = function*() {
   const data = yield JSON.parse(localStorage.getItem("favouriteData")); //here we get localstorage
-  yield put(getToLocalStorageSuccess(data));
+  yield put(getFavouritesSuccess(data));
 };
 
 const getToTheLocalStorageSagaWatcher = function*() {
-  yield takeLatest(GET_TO_LOCAL_STORAGE_REQUEST, getToTheLocalStorageSaga);
+  yield takeLatest(getFavouritesRequest, getToTheLocalStorageSaga);
 };
 
 const getInputSaga = function*(action) {

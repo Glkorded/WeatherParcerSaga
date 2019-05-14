@@ -1,4 +1,4 @@
-import { isLoading, weatherInfo } from "./reducer";
+import { isLoading, weatherInfo } from "./duck";
 
 const mockIsLoadingAction = {
   type: "GET_WEATHER_REQUEST"

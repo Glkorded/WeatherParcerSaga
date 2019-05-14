@@ -6,13 +6,9 @@ import {
   getFavouritesSuccess
 } from "./duck";
 
-const getToTheLocalStorageSaga = function*() {
+const getFavouritesSaga = function*() {
   const data = yield JSON.parse(localStorage.getItem("favouriteData")); //here we get localstorage
   yield put(getFavouritesSuccess(data));
-};
-
-const getToTheLocalStorageSagaWatcher = function*() {
-  yield takeLatest(getFavouritesRequest, getToTheLocalStorageSaga);
 };
 
 const getInputSaga = function*(action) {
@@ -20,18 +16,11 @@ const getInputSaga = function*(action) {
   yield put(getInputSuccess(data));
 };
 
-const getInputSagaWatcher = function*() {
-  // TODO: on action
-  yield takeLatest(getInputRequest, getInputSaga);
-  console.log(123);
-};
-
 // TODO: rename
-const rootSaga = function*() {
+const favouritesSaga = function*() {
   // TODO: retyping
-  // yield call(getToTheLocalStorageSaga);
-  // yield;
-  yield all([getToTheLocalStorageSagaWatcher(), getInputSagaWatcher()]);
+  yield takeLatest(getFavouritesRequest, getFavouritesSaga);
+  yield takeLatest(getInputRequest, getInputSaga);
 };
 
-export default rootSaga;
+export default favouritesSaga;

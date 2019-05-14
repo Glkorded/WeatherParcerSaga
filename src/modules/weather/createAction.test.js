@@ -1,4 +1,4 @@
-import { items } from "../favourites/reducer";
+import { items } from "../favourites/duck";
 
 const createAction = () => () => null;
 

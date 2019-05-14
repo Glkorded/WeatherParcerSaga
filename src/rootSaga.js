@@ -1,15 +1,12 @@
 import { all } from "redux-saga/effects";
 
-import getWeatherSagaWatcher from "./modules/weather/sagas";
-import getCityWeatherSagaWatcher from "./modules/cityWeather/sagas";
-import getToLocalStorageSagaWatcher from "./modules/favourites/sagas";
+import weatherSaga from "./modules/weather/sagas";
+import cityWeatherSaga from "./modules/cityWeather/sagas";
+import favouritesSaga from "./modules/favourites/sagas";
 
 const rootSaga = function*() {
-  yield all([
-    getWeatherSagaWatcher(),
-    getCityWeatherSagaWatcher(),
-    getToLocalStorageSagaWatcher()
-  ]);
+  //this saga will be called immidiately without action dispatch
+  yield all([weatherSaga(), cityWeatherSaga(), favouritesSaga()]);
 };
 
 export default rootSaga;

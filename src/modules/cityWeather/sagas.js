@@ -1,4 +1,4 @@
-import { call, put, takeLatest, all } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 import * as WeatherManager from "./managers";
 import { getCityWeatherSuccess, getCityWeatherRequest } from "./duck";
 
@@ -10,12 +10,8 @@ const getCityWeatherSaga = function*(action) {
   yield put(getCityWeatherSuccess(detailedData.consolidated_weather));
 };
 
-const getCityWeatherSagaWatcher = function*() {
+const cityWeatherSaga = function*() {
   yield takeLatest(getCityWeatherRequest, getCityWeatherSaga);
 };
 
-const rootSaga = function*() {
-  yield all([getCityWeatherSagaWatcher()]);
-};
-
-export default rootSaga;
+export default cityWeatherSaga;

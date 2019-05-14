@@ -1,4 +1,3 @@
-import * as R from "ramda";
 import { getCityWeather, getCityWeatherInfo, getCityIsLoading } from "./duck";
 
 const getCityWeatherMock = {

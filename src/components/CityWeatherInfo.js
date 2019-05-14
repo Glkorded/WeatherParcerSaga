@@ -28,6 +28,8 @@ const WindPointerImage = styled.img`
   transform: rotate(${props => props.rotateDegree}deg);
 `;
 
+// store => middlawares => (next) => action =>
+
 const DetailedCity = ({
   id,
   applicable_date,

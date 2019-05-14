@@ -1,22 +1,21 @@
-import { isLoading, weatherInfo } from "./duck";
+import {
+  isLoading,
+  weatherInfo,
+  getWeatherRequest,
+  getWeatherSuccess
+} from "./duck";
 
-const mockIsLoadingAction = {
-  type: "GET_WEATHER_REQUEST"
-};
-
-describe("Is loading reducer", () => {
-  it("Should change state", () => {
-    expect(isLoading(false, mockIsLoadingAction)).toEqual(true);
+describe("is loading reducer", () => {
+  it("should change state", () => {
+    expect(isLoading(false, getWeatherRequest())).toEqual(true);
   });
 });
 
-const mockWeatherInfoAction = {
-  type: "GET_WEATHER_SUCCESS",
-  payload: { a: 1, b: 2 }
-};
-
-describe("Weather info reducer", () => {
-  it("Should change state", () => {
-    expect(weatherInfo([], mockWeatherInfoAction)).toEqual({ a: 1, b: 2 });
+describe("weather info reducer", () => {
+  it("should change state", () => {
+    expect(weatherInfo([], getWeatherSuccess({ a: 1, b: 2 }))).toEqual({
+      a: 1,
+      b: 2
+    });
   });
 });

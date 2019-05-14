@@ -1,20 +1,20 @@
 import { getCityWeather, getCityWeatherInfo, getCityIsLoading } from "./duck";
 
 const getCityWeatherMock = {
-  cityWeather: { isLoading: false, cityWeatherInfo: "Works" }
+  cityWeather: { isLoading: false, cityWeatherInfo: "works" }
 };
 
-describe("City weather selectors", () => {
-  it("Correctly grabs info", () => {
+describe("city weather selectors", () => {
+  it("correctly grabs info", () => {
     expect(getCityWeather(getCityWeatherMock)).toEqual({
       isLoading: false,
-      cityWeatherInfo: "Works"
+      cityWeatherInfo: "works"
     });
   });
-  it("Gets isLoading status", () => {
+  it("gets isLoading status", () => {
     expect(getCityIsLoading(getCityWeatherMock)).toEqual(false);
   });
-  it("Gets info", () => {
-    expect(getCityWeatherInfo(getCityWeatherMock)).toEqual("Works");
+  it("gets info", () => {
+    expect(getCityWeatherInfo(getCityWeatherMock)).toEqual("works");
   });
 });

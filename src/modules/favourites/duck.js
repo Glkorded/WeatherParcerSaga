@@ -17,13 +17,12 @@ export const getInputSuccess = createAction("GET_INPUT_SUCCESS");
 // reducers
 
 export const items = handleAction(
-  [getFavouritesSuccess],
+  getFavouritesSuccess,
   (state, action) => action.payload,
   []
 );
-
 export const inputInfo = handleAction(
-  [getInputSuccess],
+  getInputSuccess,
   (state, action) => action.payload,
   ""
 );

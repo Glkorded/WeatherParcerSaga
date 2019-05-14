@@ -1,12 +1,13 @@
 import api from "../../api";
+import pipeP from "../../utils";
 
-export const getWeatherData = name =>
-  fetch(api.getInputData(name))
-    .then(response => {
+export const getWeatherData = pipeP(
+  name =>
+    fetch(api.getInputData(name)).then(response => {
       if (!response.ok) {
         throw Error(response.statusText);
       }
       return response;
-    })
-    .then(response => response.json())
-    .catch();
+    }),
+  response => response.json()
+);

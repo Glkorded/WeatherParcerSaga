@@ -8,6 +8,6 @@
 //TODO: constants api move in managers //DONE
 
 //TODO: Single source of truth for containers
-//TODO: Repository
+//TODO: Repository //DONE
 //TODO: Indexes
-//TODO: Change containers/components architecture
+//TODO: Change containers/components architecture //DONE

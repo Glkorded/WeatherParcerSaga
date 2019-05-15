@@ -1,16 +1,17 @@
 import React, { Component } from "react";
-import SingleCity from "../layouts/WeatherInfo";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import SingleCity from "../layouts/WeatherInfo";
 import {
   getItems,
   getInputInfo,
   getFilteredInfo,
   getFavouritesRequest,
-  getInputRequest
-} from "../../modules/favourites/duck";
+  getInputRequest,
+  Repository as FavouritesRepository
+} from "../../modules/favourites";
 import * as R from "ramda";
-import { connect } from "react-redux";
+import styled from "styled-components";
 
 const DataLink = styled(Link)`
   font-size: 18px;
@@ -72,7 +73,7 @@ class Favourites extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.data !== prevState.data) {
-      localStorage.setItem("favouriteData", JSON.stringify(this.state.data));
+      FavouritesRepository.setFavourites(this.state.data);
     }
   }
 

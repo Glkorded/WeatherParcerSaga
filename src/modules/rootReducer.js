@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
-import weather from "./weather/duck";
-import cityWeather from "./cityWeather/duck";
-import favourites from "./favourites/duck";
+import weather from "./weather";
+import cityWeather from "./cityWeather";
+import favourites from "./favourites";
 
 export default combineReducers({
   weather,

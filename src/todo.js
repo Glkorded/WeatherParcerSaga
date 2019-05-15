@@ -10,3 +10,4 @@
 //TODO: Single source of truth for containers
 //TODO: Repository
 //TODO: Indexes
+//TODO: Change containers/components architecture

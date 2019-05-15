@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getFavouritesRequest } from "../modules/favourites/duck";
-import SingleCity from "../components/WeatherInfo";
+import { getFavouritesRequest } from "../../modules/favourites/duck";
+import SingleCity from "../layouts/WeatherInfo";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import * as R from "ramda";
@@ -9,7 +9,7 @@ import {
   getWeatherInfo,
   getWeatherIsLoading,
   getWeatherRequest
-} from "../modules/weather/duck";
+} from "../../modules/weather/duck";
 
 const DataLink = styled(Link)`
   font-size: 18px;

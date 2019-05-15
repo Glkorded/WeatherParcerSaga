@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SingleCity from "../components/WeatherInfo";
+import SingleCity from "../layouts/WeatherInfo";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import {
@@ -8,7 +8,7 @@ import {
   getFilteredInfo,
   getFavouritesRequest,
   getInputRequest
-} from "../modules/favourites/duck";
+} from "../../modules/favourites/duck";
 import * as R from "ramda";
 import { connect } from "react-redux";
 

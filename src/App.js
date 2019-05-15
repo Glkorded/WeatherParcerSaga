@@ -1,9 +1,9 @@
 import React from "react";
-import SingleCitySearch from "./containers/WeatherSearch";
+import SingleCitySearch from "./view/screens/WeatherSearch";
 import { Route, Switch } from "react-router-dom";
-import Navigation from "./components/Navigation";
-import DetailedCitySearch from "./containers/CityWeatherSearch";
-import Favourites from "./containers/Favourites";
+import Navigation from "./view/layouts/Navigation";
+import DetailedCitySearch from "./view/screens/CityWeatherSearch";
+import Favourites from "./view/screens/Favourites";
 import styled from "styled-components";
 
 const Background = styled.div`

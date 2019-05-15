@@ -69,6 +69,7 @@ class Favourites extends Component {
 
   componentDidMount() {
     this.props.getFavouritesRequest();
+    this.setState({ data: FavouritesRepository.getFavourites() });
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -81,18 +82,6 @@ class Favourites extends Component {
     this.props.getInputRequest(e.target.value);
   };
 
-  filterFunction = elem => {
-    if (this.state.inputField !== "") {
-      if (
-        elem.title.toLowerCase().includes(this.props.inputInfo.toLowerCase())
-      ) {
-        return true;
-      }
-    } else {
-      return elem.title;
-    }
-  };
-
   render() {
     return (
       <Wrapper>
@@ -100,7 +89,7 @@ class Favourites extends Component {
         <SubTitle>Feel free to work with your favourited cities!</SubTitle>
         <Input onChange={this.handleChange} className="input" />
         <div>
-          {this.props.filteredInfo.map((single, index) => (
+          {this.state.data.map((single, index) => (
             <div key={single.woeid}>
               <DataLink to={`../detailed_search/${single.woeid}`}>
                 {single.title}

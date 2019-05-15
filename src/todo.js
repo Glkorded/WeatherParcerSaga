@@ -6,8 +6,7 @@
 //TODO: rootReducer and rootSaga //DONE
 //TODO: store move to modules //DONE
 //TODO: constants api move in managers //DONE
-
-//TODO: Single source of truth for containers
 //TODO: Repository //DONE
-//TODO: Indexes
+//TODO: Indexes //DONE
 //TODO: Change containers/components architecture //DONE
+//TODO: Single source of truth for containers

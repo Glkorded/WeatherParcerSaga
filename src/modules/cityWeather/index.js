@@ -1,6 +1,6 @@
-import * as _WeatherManager from "./Manager";
+import * as _cityWeatherManager from "./Manager";
 
-export const WeatherManager = _WeatherManager;
+export const cityWeatherManager = _cityWeatherManager;
 
 export { default as cityWeatherSaga } from "./sagas";
 

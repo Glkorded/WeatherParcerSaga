@@ -1,12 +1,10 @@
 import * as R from "ramda"
 import { combineReducers } from "redux"
 import { createAction, handleAction, handleActions } from "redux-actions"
-
 export const getCityWeather = R.prop("cityWeather")
 const createActionWithPrefix = type => createAction(moduleName + type)
 const moduleName = "CITY_WEATHER/"
 //==========================================================================
-
 export const getCityWeatherRequest = createActionWithPrefix(
   "GET_CITY_WEATHER_REQUEST"
 )
@@ -27,7 +25,6 @@ export const getCityWeatherInfo = R.pipe(
   getCityWeather,
   R.prop("cityWeatherInfo")
 )
-
 //==========================================================================
 export const setIsLoading = createActionWithPrefix("SET_IS_LOADING")
 

@@ -1,39 +1,39 @@
 import {
-  getWeather,
-  getWeatherInfo,
-  getWeatherIsLoading,
+  fetchWeather,
+  fetchWeatherInfo,
+  fetchWeatherIsLoading,
   isLoading,
   weatherInfo,
-  getWeatherRequest,
-  getWeatherSuccess
+  fetchWeatherRequest,
+  setWeather
 } from "./duck"
 
-const getWeatherMock = { weather: { isLoading: false, weatherInfo: "Works" } }
+const fetchWeatherMock = { weather: { isLoading: false, weatherInfo: "Works" } }
 
 describe("Weather selectors", () => {
   it("Correctly grabs info", () => {
-    expect(getWeather(getWeatherMock)).toEqual({
+    expect(fetchWeather(fetchWeatherMock)).toEqual({
       isLoading: false,
       weatherInfo: "Works"
     })
   })
   it("Gets isLoading status", () => {
-    expect(getWeatherIsLoading(getWeatherMock)).toEqual(false)
+    expect(fetchWeatherIsLoading(fetchWeatherMock)).toEqual(false)
   })
   it("Gets info", () => {
-    expect(getWeatherInfo(getWeatherMock)).toEqual("Works")
+    expect(fetchWeatherInfo(fetchWeatherMock)).toEqual("Works")
   })
 })
 
 describe("is loading reducer", () => {
   it("should change state", () => {
-    expect(isLoading(false, getWeatherRequest())).toEqual(true)
+    expect(isLoading(false, fetchWeatherRequest())).toEqual(true)
   })
 })
 
 describe("weather info reducer", () => {
   it("should change state", () => {
-    expect(weatherInfo([], getWeatherSuccess({ a: 1, b: 2 }))).toEqual({
+    expect(weatherInfo([], setWeather({ a: 1, b: 2 }))).toEqual({
       a: 1,
       b: 2
     })

@@ -10,10 +10,10 @@ import styled from "styled-components"
 import { Link } from "react-router-dom"
 import * as R from "ramda"
 import {
-  getWeatherInfo,
-  getWeatherIsLoading,
-  getWeatherRequest,
-  setIsLoading
+  fetchWeatherIsLoading,
+  fetchWeatherRequest,
+  setIsLoading,
+  fetchWeatherItems
 } from "../../modules/weather"
 
 const DataLink = styled(Link)`
@@ -71,7 +71,7 @@ class SingleCitySearch extends Component {
   }
 
   handleChange = e => {
-    this.props.getWeatherRequest(e.target.value)
+    this.props.fetchWeatherRequest(e.target.value)
   }
 
   disabledCheckFunc = elem => {
@@ -81,7 +81,7 @@ class SingleCitySearch extends Component {
   } //Function to check whether city is favourited
 
   componentDidMount() {
-    this.props.getWeatherRequest("San")
+    this.props.fetchWeatherRequest("San")
     if (this.props.getItems !== null) {
       this.setState({
         favourites: this.props.items
@@ -141,7 +141,7 @@ class SingleCitySearch extends Component {
 }
 
 const mapDispatchToProps = {
-  getWeatherRequest,
+  fetchWeatherRequest,
   getFavouritesRequest,
   setFavouritesRequest,
   setIsLoading
@@ -149,8 +149,8 @@ const mapDispatchToProps = {
 
 export default connect(
   R.applySpec({
-    isLoading: getWeatherIsLoading,
-    weatherInfo: getWeatherInfo,
+    isLoading: fetchWeatherIsLoading,
+    weatherInfo: fetchWeatherItems,
     items: getItems
   }),
   mapDispatchToProps

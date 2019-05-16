@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
+import React from "react"
+import styled from "styled-components"
 
 const TableBody = styled.tbody`
   display: flex;
   width: auto;
   border: 2px solid gray;
-`;
+`
 
 const TableData = styled.td`
   display: flex;
@@ -14,19 +14,19 @@ const TableData = styled.td`
   font-weight: bold;
   font-family: "KoHo", sans-serif;
   text-decoration: none;
-`;
+`
 
 const WeatherImage = styled.img`
   height: 64px;
   width: 64px;
-`;
+`
 
 const WindPointerImage = styled.img`
   height: 24px;
   width: 24px;
   margin-top: 20px;
   transform: rotate(${props => props.rotateDegree}deg);
-`;
+`
 
 // store => middlawares => (next) => action =>
 
@@ -78,7 +78,7 @@ const DetailedCity = ({
         <TableData>Max temp: {max_temp.toFixed(1)}°C </TableData>
       </tr>
     </TableBody>
-  );
-};
+  )
+}
 
-export default DetailedCity;
+export default DetailedCity

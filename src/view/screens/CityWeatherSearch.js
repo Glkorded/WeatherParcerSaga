@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from "react"
+import { connect } from "react-redux"
 import {
   getCityWeatherRequest,
   getCityIsLoading,
   getCityWeatherInfo
-} from "../../modules/cityWeather";
-import DetailedCity from "../layouts/CityWeatherInfo";
-import * as R from "ramda";
-import styled from "styled-components";
+} from "../../modules/cityWeather"
+import DetailedCity from "../layouts/CityWeatherInfo"
+import * as R from "ramda"
+import styled from "styled-components"
 
 const Table = styled.table`
   display: flex;
@@ -18,21 +18,22 @@ const Table = styled.table`
   background: #fffefe;
   width: 762px;
   border: 4px solid gray;
-`;
+`
 
 class DetailedCitySearch extends Component {
   componentDidMount() {
-    this.props.getCityWeatherRequest(this.props.match.params.cityId);
+    this.props.getCityWeatherRequest(this.props.match.params.cityId)
   }
 
   render() {
-    const { isLoading, cityWeatherInfo } = this.props;
+    const { isLoading, cityWeatherInfo } = this.props
     return (
       <div>
         {!isLoading ? (
           <Table>
             {cityWeatherInfo.map(detailed => (
               <DetailedCity
+                data-testid="lkdasjflkdsajfldska"
                 key={detailed.id}
                 applicable_date={detailed.applicable_date}
                 weather_state_name={detailed.weather_state_name}
@@ -49,13 +50,13 @@ class DetailedCitySearch extends Component {
           "Loading"
         )}
       </div>
-    );
+    )
   }
 }
 
 const mapDispatchToProps = {
   getCityWeatherRequest
-};
+}
 
 export default connect(
   R.applySpec({
@@ -63,4 +64,4 @@ export default connect(
     cityWeatherInfo: getCityWeatherInfo
   }),
   mapDispatchToProps
-)(DetailedCitySearch);
+)(DetailedCitySearch)

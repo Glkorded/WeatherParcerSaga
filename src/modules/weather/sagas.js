@@ -1,21 +1,22 @@
 import { call, put, takeLatest } from "redux-saga/effects"
 import * as WeatherManager from "./Manager"
-import { getWeatherSuccess, getWeatherRequest, setIsLoading } from "./duck"
+import { setWeather, fetchWeatherRequest, setIsLoading } from "./duck"
 
-export const getWeatherSaga = function*(action) {
+// TODO: rename with fetch
+export const fetchWeatherSaga = function*(action) {
   let data
   try {
-    data = yield call(WeatherManager.getWeatherData, action.payload)
+    data = yield call(WeatherManager.fetchWeatherData, action.payload)
   } catch (err) {
     console.log(err)
     yield put(setIsLoading(false))
     return
   }
-  yield put(getWeatherSuccess(data))
+  yield put(setWeather(data))
 }
 
 const weatherSaga = function*() {
-  yield takeLatest(getWeatherRequest, getWeatherSaga)
+  yield takeLatest(fetchWeatherRequest, fetchWeatherSaga)
 }
 
 export default weatherSaga

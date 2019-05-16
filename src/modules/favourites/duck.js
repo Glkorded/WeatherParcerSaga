@@ -24,6 +24,7 @@ export const setFavouritesSuccess = createActionWithPrefix(
   "SET_FAVOURITES_SUCCESS"
 )
 
+// TODO: one action
 export const items = handleActions(
   {
     [getFavouritesSuccess]: (state, action) => action.payload,
@@ -50,13 +51,6 @@ export const getInputInfo = R.pipe(
 )
 //==========================================================================
 
-const favourites = combineReducers({
-  items,
-  inputInfo
-})
-
-export default favourites
-
 export const getFilteredInfo = createSelector(
   [getItems, getInputInfo],
   (items, inputInfo) =>
@@ -64,3 +58,10 @@ export const getFilteredInfo = createSelector(
       elem.title.toLowerCase().includes(inputInfo.toLowerCase())
     )
 )
+
+const favourites = combineReducers({
+  items,
+  inputInfo
+})
+
+export default favourites

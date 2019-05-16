@@ -11,6 +11,12 @@
 //TODO: Change containers/components architecture //DONE
 //TODO: Single source of truth for favourites //DONE
 
+//TODO: Test
+//TODO: Fetches //DONE
+//TODO: Minor rebuild in weather duck
+//TODO: Probably minor rebuild in cityweather duck
+//TODO: .env
+
 /*
 how everything must work:
 1: On main screen on each button click we dispatch saga with new payload, which sets localStorage to the payload

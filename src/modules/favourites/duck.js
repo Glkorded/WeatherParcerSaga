@@ -11,7 +11,7 @@ const moduleName = "FAVOURITES/"
 export const getFavouritesRequest = createActionWithPrefix(
   "GET_FAVOURITES_REQUEST"
 )
-export const getFavouritesSuccess = createActionWithPrefix(
+export const setFavouritesSuccess = createActionWithPrefix(
   "GET_FAVOURITES_SUCCESS"
 )
 export const getFavouritesFailure = createActionWithPrefix(
@@ -20,16 +20,11 @@ export const getFavouritesFailure = createActionWithPrefix(
 export const setFavouritesRequest = createActionWithPrefix(
   "SET_FAVOURITES_REQUEST"
 )
-export const setFavouritesSuccess = createActionWithPrefix(
-  "SET_FAVOURITES_SUCCESS"
-)
 
 // TODO: one action
-export const items = handleActions(
-  {
-    [getFavouritesSuccess]: (state, { payload }) => payload,
-    [setFavouritesSuccess]: (state, { payload }) => payload
-  },
+export const items = handleAction(
+  setFavouritesSuccess,
+  (state, { payload }) => payload,
   []
 )
 

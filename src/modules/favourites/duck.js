@@ -38,21 +38,16 @@ export const getItems = R.pipe(
 )
 
 //==========================================================================
-
-export const getInputRequest = createActionWithPrefix("GET_INPUT_REQUEST")
-export const getInputSuccess = createActionWithPrefix("GET_INPUT_SUCCESS")
-
+export const setInput = createActionWithPrefix("SET_INPUT")
 export const inputInfo = handleAction(
-  getInputSuccess,
+  setInput,
   (state, action) => action.payload,
   ""
 )
-
 export const getInputInfo = R.pipe(
   getFavourites,
   R.prop("inputInfo")
 )
-
 //==========================================================================
 
 const favourites = combineReducers({

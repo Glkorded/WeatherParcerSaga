@@ -1,7 +1,5 @@
 import { call, put, takeLatest } from "redux-saga/effects"
 import {
-  getInputRequest,
-  getInputSuccess,
   getFavouritesSuccess,
   setFavouritesRequest,
   setFavouritesSuccess
@@ -17,16 +15,9 @@ const setFavouritesSaga = function*({ payload: favorite }) {
   yield put(setFavouritesSuccess(favorite))
 }
 
-//TODO: get rid of it
-const getInputSaga = function*(action) {
-  const data = action.payload
-  yield put(getInputSuccess(data))
-}
-
 const favouritesSaga = function*() {
   yield call(getFavouritesSaga)
   yield takeLatest(setFavouritesRequest, setFavouritesSaga)
-  yield takeLatest(getInputRequest, getInputSaga)
 }
 
 export default favouritesSaga

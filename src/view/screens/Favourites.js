@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import SingleCity from "../layouts/WeatherInfo";
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { Link } from "react-router-dom"
+import SingleCity from "../layouts/WeatherInfo"
 import {
   getItems,
   getInputInfo,
   getFilteredInfo,
   getFavouritesRequest,
-  getInputRequest,
-  setFavouritesRequest
-} from "../../modules/favourites";
-import * as R from "ramda";
-import styled from "styled-components";
+  setFavouritesRequest,
+  setInput
+} from "../../modules/favourites"
+import * as R from "ramda"
+import styled from "styled-components"
 
 const DataLink = styled(Link)`
   font-size: 18px;
@@ -19,7 +19,7 @@ const DataLink = styled(Link)`
   font-family: "KoHo", sans-serif;
   text-decoration: none;
   color: #c88c32;
-`;
+`
 const Title = styled.h1`
   position: sticky;
   margin: 0px;
@@ -30,7 +30,7 @@ const Title = styled.h1`
   top: 0px;
   z-index: 1;
   background: #edeef0;
-`;
+`
 
 const SubTitle = styled.h2`
   position: sticky;
@@ -42,7 +42,7 @@ const SubTitle = styled.h2`
   top: 41px;
   z-index: 1;
   background: #edeef0;
-`;
+`
 
 const Wrapper = styled.div`
   display: flex;
@@ -52,35 +52,36 @@ const Wrapper = styled.div`
   text-align: center;
   height: calc(100% - 61px);
   overflow: auto;
-`;
+`
 
 const Input = styled.input`
   position: sticky;
   top: 72px;
   z-index: 1;
   background: #edeef0;
-`;
+`
 
 class Favourites extends Component {
   constructor(props) {
-    super(props);
-    this.state = { data: [] };
+    super(props)
+    this.state = { data: [] }
   }
 
   componentDidMount() {
-    this.props.getFavouritesRequest();
-    this.setState({ data: this.props.items });
+    this.props.getFavouritesRequest()
+    this.setState({ data: this.props.items })
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.data !== prevState.data) {
-      this.props.setFavouritesRequest(this.state.data);
+      this.props.setFavouritesRequest(this.state.data)
     }
   }
 
   handleChange = e => {
-    this.props.getInputRequest(e.target.value);
-  };
+    //just add to the store
+    this.props.setInput(e.target.value)
+  }
 
   render() {
     return (
@@ -101,24 +102,24 @@ class Favourites extends Component {
                 buttonName="Unfavourite me!"
                 buttonDisabled={false}
                 handleFavourite={() => {
-                  const semiData = this.state.data.slice();
-                  semiData.splice(index, 1);
-                  this.setState({ data: semiData });
+                  const semiData = this.state.data.slice()
+                  semiData.splice(index, 1)
+                  this.setState({ data: semiData })
                 }}
               />
             </div>
           ))}
         </div>
       </Wrapper>
-    );
+    )
   }
 }
 
 const mapDispatchToProps = {
   getFavouritesRequest,
   setFavouritesRequest,
-  getInputRequest
-};
+  setInput
+}
 
 export default connect(
   R.applySpec({
@@ -127,4 +128,4 @@ export default connect(
     filteredInfo: getFilteredInfo
   }),
   mapDispatchToProps
-)(Favourites);
+)(Favourites)

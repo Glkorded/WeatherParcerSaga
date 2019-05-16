@@ -27,8 +27,8 @@ export const setFavouritesSuccess = createActionWithPrefix(
 // TODO: one action
 export const items = handleActions(
   {
-    [getFavouritesSuccess]: (state, action) => action.payload,
-    [setFavouritesSuccess]: (state, action) => action.payload
+    [getFavouritesSuccess]: (state, { payload }) => payload,
+    [setFavouritesSuccess]: (state, { payload }) => payload
   },
   []
 )
@@ -42,7 +42,7 @@ export const getItems = R.pipe(
 export const setInput = createActionWithPrefix("SET_INPUT")
 export const inputInfo = handleAction(
   setInput,
-  (state, action) => action.payload,
+  (state, { payload }) => payload,
   ""
 )
 export const getInputInfo = R.pipe(

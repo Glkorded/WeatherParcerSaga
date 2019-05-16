@@ -15,7 +15,7 @@ export const getCityWeatherFailure = createActionWithPrefix(
 
 export const items = handleAction(
   setCityWeather,
-  (state, action) => action.payload,
+  (state, { payload }) => payload,
   []
 )
 
@@ -28,7 +28,7 @@ export const setIsLoading = createActionWithPrefix("SET_IS_LOADING")
 
 export const isLoading = handleAction(
   setIsLoading,
-  (state, action) => action.payload,
+  (state, { payload }) => payload,
   false
 )
 

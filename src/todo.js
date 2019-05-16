@@ -13,8 +13,8 @@
 
 //TODO: Test
 //TODO: Fetches //DONE
-//TODO: Minor rebuild in weather duck
-//TODO: Probably minor rebuild in cityweather duck
+//TODO: Minor rebuild in weather duck //DONE
+//TODO: Probably minor rebuild in cityweather duck //DONE
 //TODO: .env //DONE
 
 /*

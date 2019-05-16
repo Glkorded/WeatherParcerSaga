@@ -1,20 +1,20 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from "react"
+import { connect } from "react-redux"
 import {
   getFavouritesRequest,
   setFavouritesRequest,
-  getItems,
-} from "../../modules/favourites/";
-import SingleCity from "../layouts/WeatherInfo";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import * as R from "ramda";
+  getItems
+} from "../../modules/favourites/"
+import SingleCity from "../layouts/WeatherInfo"
+import styled from "styled-components"
+import { Link } from "react-router-dom"
+import * as R from "ramda"
 import {
   getWeatherInfo,
   getWeatherIsLoading,
   getWeatherRequest,
-  setIsLoading,
-} from "../../modules/weather";
+  setIsLoading
+} from "../../modules/weather"
 
 const DataLink = styled(Link)`
   font-size: 18px;
@@ -22,7 +22,7 @@ const DataLink = styled(Link)`
   font-family: "KoHo", sans-serif;
   text-decoration: none;
   color: #c88c32;
-`;
+`
 const Title = styled.h1`
   position: sticky;
   margin: 0px;
@@ -33,7 +33,7 @@ const Title = styled.h1`
   top: 0px;
   z-index: 1;
   background: #edeef0;
-`;
+`
 
 const SubTitle = styled.h2`
   position: sticky;
@@ -45,7 +45,7 @@ const SubTitle = styled.h2`
   top: 41px;
   z-index: 1;
   background: #edeef0;
-`;
+`
 
 const Wrapper = styled.div`
   display: flex;
@@ -55,48 +55,48 @@ const Wrapper = styled.div`
   text-align: center;
   height: calc(100% - 61px);
   overflow: auto;
-`;
+`
 
 const Input = styled.input`
   position: sticky;
   top: 72px;
   z-index: 1;
   background: #edeef0;
-`;
+`
 
 class SingleCitySearch extends Component {
   constructor(props) {
-    super(props);
-    this.state = { inputField: "City", favourites: [] };
+    super(props)
+    this.state = { inputField: "City", favourites: [] }
   }
 
   handleChange = e => {
-    this.props.getWeatherRequest(e.target.value);
-  };
+    this.props.getWeatherRequest(e.target.value)
+  }
 
   disabledCheckFunc = elem => {
     if (this.state.favourites !== null) {
-      return this.state.favourites.map(e => e.woeid).some(el => el === elem);
+      return this.state.favourites.map(e => e.woeid).some(el => el === elem)
     }
-  }; //Function to check whether city is favourited
+  } //Function to check whether city is favourited
 
   componentDidMount() {
-    this.props.getWeatherRequest("San");
+    this.props.getWeatherRequest("San")
     if (this.props.getItems !== null) {
       this.setState({
-        favourites: this.props.favourites
-      });
+        favourites: this.props.items
+      })
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.favourites !== prevState.favourites) {
-      this.props.setFavouritesRequest(this.state.favourites);
+      this.props.setFavouritesRequest(this.state.favourites)
     }
   }
 
   render() {
-    const { isLoading, weatherInfo } = this.props;
+    const { isLoading, weatherInfo } = this.props
     return (
       <Wrapper>
         <Title>SEARCH</Title>
@@ -123,20 +123,20 @@ class SingleCitySearch extends Component {
                   buttonName="Favourite me!"
                   buttonDisabled={this.disabledCheckFunc(single.woeid)}
                   handleFavourite={() => {
-                    const semiData = this.state.favourites.slice();
-                    semiData.push(single);
-                    this.setState({ favourites: semiData });
-                    console.log(`${single.title} was added to favourites`);
+                    const semiData = this.state.favourites.slice()
+                    semiData.push(single)
+                    this.setState({ favourites: semiData })
+                    console.log(`${single.title} was added to favourites`)
                   }}
                 />
               </div>
             ))}
           </div>
         ) : (
-            <p>Loading…</p>
-          )}
+          <p>Loading…</p>
+        )}
       </Wrapper>
-    );
+    )
   }
 }
 
@@ -145,13 +145,13 @@ const mapDispatchToProps = {
   getFavouritesRequest,
   setFavouritesRequest,
   setIsLoading
-};
+}
 
 export default connect(
   R.applySpec({
     isLoading: getWeatherIsLoading,
     weatherInfo: getWeatherInfo,
-    favourites: getItems,
+    items: getItems
   }),
   mapDispatchToProps
-)(SingleCitySearch);
+)(SingleCitySearch)

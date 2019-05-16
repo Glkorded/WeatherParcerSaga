@@ -12,6 +12,7 @@ const getFavouritesSaga = function*() {
 }
 
 const setFavouritesSaga = function*({ payload: favorite }) {
+  yield call(Repository.setFavourites, favorite)
   yield put(setFavouritesSuccess(favorite))
 }
 

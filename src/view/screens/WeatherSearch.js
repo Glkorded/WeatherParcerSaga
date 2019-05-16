@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
   getFavouritesRequest,
-  Repository as FavouritesRepository
+  setFavouritesRequest,
+  getItems,
 } from "../../modules/favourites/";
 import SingleCity from "../layouts/WeatherInfo";
 import styled from "styled-components";
@@ -11,7 +12,8 @@ import * as R from "ramda";
 import {
   getWeatherInfo,
   getWeatherIsLoading,
-  getWeatherRequest
+  getWeatherRequest,
+  setIsLoading,
 } from "../../modules/weather";
 
 const DataLink = styled(Link)`
@@ -80,17 +82,16 @@ class SingleCitySearch extends Component {
 
   componentDidMount() {
     this.props.getWeatherRequest("San");
-    if (FavouritesRepository.getFavourites() !== null) {
+    if (this.props.getItems !== null) {
       this.setState({
-        favourites: FavouritesRepository.getFavourites()
+        favourites: this.props.favourites
       });
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.favourites !== prevState.favourites) {
-      FavouritesRepository.setFavourites(this.state.favourites); //Here we set favourites to localStorage
-      this.props.getFavouritesRequest();
+      this.props.setFavouritesRequest(this.state.favourites);
     }
   }
 
@@ -132,8 +133,8 @@ class SingleCitySearch extends Component {
             ))}
           </div>
         ) : (
-          <p>Loading…</p>
-        )}
+            <p>Loading…</p>
+          )}
       </Wrapper>
     );
   }
@@ -141,13 +142,16 @@ class SingleCitySearch extends Component {
 
 const mapDispatchToProps = {
   getWeatherRequest,
-  getFavouritesRequest
+  getFavouritesRequest,
+  setFavouritesRequest,
+  setIsLoading
 };
 
 export default connect(
   R.applySpec({
     isLoading: getWeatherIsLoading,
-    weatherInfo: getWeatherInfo
+    weatherInfo: getWeatherInfo,
+    favourites: getItems,
   }),
   mapDispatchToProps
 )(SingleCitySearch);

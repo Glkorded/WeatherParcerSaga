@@ -8,7 +8,7 @@ import {
   getFilteredInfo,
   getFavouritesRequest,
   getInputRequest,
-  Repository as FavouritesRepository
+  setFavouritesRequest
 } from "../../modules/favourites";
 import * as R from "ramda";
 import styled from "styled-components";
@@ -69,12 +69,12 @@ class Favourites extends Component {
 
   componentDidMount() {
     this.props.getFavouritesRequest();
-    this.setState({ data: FavouritesRepository.getFavourites() });
+    this.setState({ data: this.props.items });
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.data !== prevState.data) {
-      FavouritesRepository.setFavourites(this.state.data);
+      this.props.setFavouritesRequest(this.state.data);
     }
   }
 
@@ -89,7 +89,7 @@ class Favourites extends Component {
         <SubTitle>Feel free to work with your favourited cities!</SubTitle>
         <Input onChange={this.handleChange} className="input" />
         <div>
-          {this.state.data.map((single, index) => (
+          {this.props.filteredInfo.map((single, index) => (
             <div key={single.woeid}>
               <DataLink to={`../detailed_search/${single.woeid}`}>
                 {single.title}
@@ -116,6 +116,7 @@ class Favourites extends Component {
 
 const mapDispatchToProps = {
   getFavouritesRequest,
+  setFavouritesRequest,
   getInputRequest
 };
 

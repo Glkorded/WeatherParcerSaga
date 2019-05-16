@@ -1,56 +1,66 @@
-import { createAction, handleAction } from "redux-actions";
-import { combineReducers } from "redux";
-import * as R from "ramda";
-import { createSelector } from "reselect";
+import { createAction, handleAction, handleActions } from "redux-actions"
+import { combineReducers } from "redux"
+import * as R from "ramda"
+import { createSelector } from "reselect"
 
-const getFavourites = R.prop("favourites");
-
+const getFavourites = R.prop("favourites")
+const createActionWithPrefix = type => createAction(moduleName + type)
+const moduleName = "FAVOURITES/"
 //==========================================================================
 
-export const getFavouritesRequest = createAction(
-  "FAVOURITES/GET_FAVOURITES_REQUEST"
-);
-export const getFavouritesSuccess = createAction(
-  "FAVOURITES/GET_FAVOURITES_SUCCESS"
-);
-export const getFavouritesFailure = createAction(
-  "FAVOURITES/GET_FAVOURITES_FAILURE"
-);
+export const getFavouritesRequest = createActionWithPrefix(
+  "GET_FAVOURITES_REQUEST"
+)
+export const getFavouritesSuccess = createActionWithPrefix(
+  "GET_FAVOURITES_SUCCESS"
+)
+export const getFavouritesFailure = createActionWithPrefix(
+  "GET_FAVOURITES_FAILURE"
+)
+export const setFavouritesRequest = createActionWithPrefix(
+  "SET_FAVOURITES_REQUEST"
+)
+export const setFavouritesSuccess = createActionWithPrefix(
+  "SET_FAVOURITES_SUCCESS"
+)
 
-export const items = handleAction(
-  getFavouritesSuccess,
-  (state, action) => action.payload,
+export const items = handleActions(
+  {
+    [getFavouritesSuccess]: (state, action) => action.payload,
+    [setFavouritesSuccess]: (state, action) => action.payload
+  },
   []
-);
+)
+
 export const getItems = R.pipe(
   getFavourites,
   R.prop("items")
-);
+)
 
 //==========================================================================
 
-export const getInputRequest = createAction("GET_INPUT_REQUEST");
-export const getInputSuccess = createAction("GET_INPUT_SUCCESS");
+export const getInputRequest = createActionWithPrefix("GET_INPUT_REQUEST")
+export const getInputSuccess = createActionWithPrefix("GET_INPUT_SUCCESS")
 
 export const inputInfo = handleAction(
   getInputSuccess,
   (state, action) => action.payload,
   ""
-);
+)
 
 export const getInputInfo = R.pipe(
   getFavourites,
   R.prop("inputInfo")
-);
+)
 
 //==========================================================================
 
 const favourites = combineReducers({
   items,
   inputInfo
-});
+})
 
-export default favourites;
+export default favourites
 
 export const getFilteredInfo = createSelector(
   [getItems, getInputInfo],
@@ -58,4 +68,4 @@ export const getFilteredInfo = createSelector(
     items.filter(elem =>
       elem.title.toLowerCase().includes(inputInfo.toLowerCase())
     )
-);
+)

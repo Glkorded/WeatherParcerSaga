@@ -1,10 +1,10 @@
-import React from "react";
-import SingleCitySearch from "./view/screens/WeatherSearch";
-import { Route, Switch } from "react-router-dom";
-import Navigation from "./view/layouts/Navigation";
-import DetailedCitySearch from "./view/screens/CityWeatherSearch";
-import Favourites from "./view/screens/Favourites";
-import styled from "styled-components";
+import React from "react"
+import SingleCitySearch from "./view/screens/WeatherSearch"
+import { Route, Switch } from "react-router-dom"
+import Navigation from "./view/layouts/Navigation"
+import DetailedCitySearch from "./view/screens/CityWeatherSearch"
+import Favourites from "./view/screens/Favourites"
+import styled from "styled-components"
 
 const Background = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ const Background = styled.div`
   background-repeat: repeat;
   height: 947px;
   width: auto;
-`;
+`
 
 const App = () => (
   <Background imgSrc={"../images/background.jpg"}>
@@ -27,6 +27,6 @@ const App = () => (
       />
     </Switch>
   </Background>
-);
+)
 
-export default App;
+export default App

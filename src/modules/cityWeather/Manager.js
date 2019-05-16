@@ -1,4 +1,3 @@
-import { proxy, url } from "../../utils/api"
 import pipeP from "../../utils/utils"
 
 const handleStatus = () => response => {
@@ -10,7 +9,7 @@ const handleStatus = () => response => {
 }
 
 export const getCityWeatherData = pipeP(
-  cityId => fetch(`${proxy}${url}/location/${cityId}`),
+  cityId => fetch(`${process.env.REACT_APP_URL}/location/${cityId}`),
   response => handleStatus()(response),
   response => response.json()
 )

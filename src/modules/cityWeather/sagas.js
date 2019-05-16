@@ -1,10 +1,6 @@
 import { call, put, takeLatest } from "redux-saga/effects"
 import * as cityWeatherManager from "./Manager"
-import {
-  getCityWeatherSuccess,
-  getCityWeatherRequest,
-  setIsLoading
-} from "./duck"
+import { setCityWeather, fetchCityWeatherRequest, setIsLoading } from "./duck"
 
 const getCityWeatherSaga = function*(action) {
   let detailedData
@@ -18,11 +14,12 @@ const getCityWeatherSaga = function*(action) {
     yield put(setIsLoading(false))
     return
   }
-  yield put(getCityWeatherSuccess(detailedData.consolidated_weather))
+  yield put(setCityWeather(detailedData.consolidated_weather))
+  yield put(setIsLoading(false))
 }
 
 const cityWeatherSaga = function*() {
-  yield takeLatest(getCityWeatherRequest, getCityWeatherSaga)
+  yield takeLatest(fetchCityWeatherRequest, getCityWeatherSaga)
 }
 
 export default cityWeatherSaga

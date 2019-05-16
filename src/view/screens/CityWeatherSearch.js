@@ -1,9 +1,10 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import {
-  getCityWeatherRequest,
+  fetchCityWeatherRequest,
   getCityIsLoading,
-  getCityWeatherInfo
+  getCityWeatherInfo,
+  setIsLoading
 } from "../../modules/cityWeather"
 import DetailedCity from "../layouts/CityWeatherInfo"
 import * as R from "ramda"
@@ -22,7 +23,8 @@ const Table = styled.table`
 
 class DetailedCitySearch extends Component {
   componentDidMount() {
-    this.props.getCityWeatherRequest(this.props.match.params.cityId)
+    this.props.fetchCityWeatherRequest(this.props.match.params.cityId)
+    this.props.setIsLoading(true)
   }
 
   render() {
@@ -55,7 +57,8 @@ class DetailedCitySearch extends Component {
 }
 
 const mapDispatchToProps = {
-  getCityWeatherRequest
+  fetchCityWeatherRequest,
+  setIsLoading
 }
 
 export default connect(

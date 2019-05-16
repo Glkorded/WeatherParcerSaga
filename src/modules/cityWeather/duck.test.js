@@ -4,19 +4,19 @@ import {
   getCityWeather,
   getCityWeatherInfo,
   getCityIsLoading,
-  getCityWeatherRequest,
-  getCityWeatherSuccess
+  fetchCityWeatherRequest,
+  setCityWeather
 } from "./duck"
 
 describe("Is loading reducer", () => {
   it("Should change state", () => {
-    expect(isLoading(false, getCityWeatherRequest())).toEqual(true)
+    expect(isLoading(false, fetchCityWeatherRequest())).toEqual(true)
   })
 })
 
 describe("Weather info reducer", () => {
   it("Should change state", () => {
-    expect(cityWeatherInfo([], getCityWeatherSuccess({ a: 1, b: 2 }))).toEqual({
+    expect(cityWeatherInfo([], setCityWeather({ a: 1, b: 2 }))).toEqual({
       a: 1,
       b: 2
     })

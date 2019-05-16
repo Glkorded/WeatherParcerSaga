@@ -15,7 +15,7 @@
 //TODO: Fetches //DONE
 //TODO: Minor rebuild in weather duck
 //TODO: Probably minor rebuild in cityweather duck
-//TODO: .env
+//TODO: .env //DONE
 
 /*
 how everything must work:

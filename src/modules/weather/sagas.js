@@ -13,6 +13,7 @@ export const fetchWeatherSaga = function*(action) {
     return
   }
   yield put(setWeather(data))
+  yield put(setIsLoading(false))
 }
 
 const weatherSaga = function*() {

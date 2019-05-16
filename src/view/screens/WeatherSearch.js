@@ -82,6 +82,7 @@ class SingleCitySearch extends Component {
 
   componentDidMount() {
     this.props.fetchWeatherRequest("San")
+    this.props.setIsLoading(true)
     if (this.props.getItems !== null) {
       this.setState({
         favourites: this.props.items

@@ -1,39 +1,34 @@
 import * as R from "ramda"
 import { combineReducers } from "redux"
-import { createAction, handleAction, handleActions } from "redux-actions"
+import { createAction, handleAction } from "redux-actions"
 export const getCityWeather = R.prop("cityWeather")
 const createActionWithPrefix = type => createAction(moduleName + type)
 const moduleName = "CITY_WEATHER/"
 //==========================================================================
-export const getCityWeatherRequest = createActionWithPrefix(
-  "GET_CITY_WEATHER_REQUEST"
+export const fetchCityWeatherRequest = createActionWithPrefix(
+  "FETCH_CITY_WEATHER_REQUEST"
 )
-export const getCityWeatherSuccess = createActionWithPrefix(
-  "GET_CITY_WEATHER_SUCCESS"
-)
+export const setCityWeather = createActionWithPrefix("SET_CITY_WEATHER")
 export const getCityWeatherFailure = createActionWithPrefix(
   "GET_CITY_WEATHER_FAILURE"
 )
 
-export const cityWeatherInfo = handleAction(
-  [getCityWeatherSuccess],
+export const items = handleAction(
+  setCityWeather,
   (state, action) => action.payload,
   []
 )
 
 export const getCityWeatherInfo = R.pipe(
   getCityWeather,
-  R.prop("cityWeatherInfo")
+  R.prop("items")
 )
 //==========================================================================
 export const setIsLoading = createActionWithPrefix("SET_IS_LOADING")
 
-export const isLoading = handleActions(
-  {
-    [getCityWeatherRequest]: () => true,
-    [getCityWeatherSuccess]: () => false,
-    [setIsLoading]: (state, action) => action.payload
-  },
+export const isLoading = handleAction(
+  setIsLoading,
+  (state, action) => action.payload,
   false
 )
 
@@ -45,7 +40,7 @@ export const getCityIsLoading = R.pipe(
 //==========================================================================
 
 const cityWeather = combineReducers({
-  cityWeatherInfo,
+  items,
   isLoading
 })
 

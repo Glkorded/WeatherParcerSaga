@@ -59,7 +59,7 @@ const DetailedCity = ({
         <TableData>
           Wind direction:
           <WindPointerImage
-            src={require(`../images/windarrow.svg`)}
+            src={require(`src/view/images/windarrow.svg`)}
             alt={wind_direction_compass}
             rotateDegree={wind_direction.toFixed(0)}
           />

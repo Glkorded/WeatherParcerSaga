@@ -1,22 +1,22 @@
-import React, { Component } from "react"
-import { connect } from "react-redux"
-import { Link } from "react-router-dom"
-import SingleCity from "../layouts/WeatherInfo"
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import SingleCity from './WeatherInfo'
 import {
   getItems,
   getInputInfo,
   getFilteredInfo,
   getFavouritesRequest,
   setFavouritesRequest,
-  setInput
-} from "../../modules/favourites"
-import * as R from "ramda"
-import styled from "styled-components"
+  setInput,
+} from '../../modules/favourites'
+import * as R from 'ramda'
+import styled from 'styled-components'
 
 const DataLink = styled(Link)`
   font-size: 18px;
   font-weight: bold;
-  font-family: "KoHo", sans-serif;
+  font-family: 'KoHo', sans-serif;
   text-decoration: none;
   color: #c88c32;
 `
@@ -25,7 +25,7 @@ const Title = styled.h1`
   margin: 0px;
   color: gray;
   font-weight: bold;
-  font-family: "KoHo", sans-serif;
+  font-family: 'KoHo', sans-serif;
   text-align: center;
   top: 0px;
   z-index: 1;
@@ -37,7 +37,7 @@ const SubTitle = styled.h2`
   margin: 0px;
   color: gray;
   font-weight: bold;
-  font-family: "KoHo", sans-serif;
+  font-family: 'KoHo', sans-serif;
   text-align: center;
   top: 41px;
   z-index: 1;
@@ -61,71 +61,67 @@ const Input = styled.input`
   background: #edeef0;
 `
 
-class Favourites extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { data: [] }
-  }
+const Favourites = props => {
+  const [data, setData] = useState([])
 
-  componentDidMount() {
-    this.props.getFavouritesRequest()
-    this.setState({ data: this.props.items })
-  }
+  useEffect(() => {
+    props.getFavouritesRequest()
+    setData(props.items)
+  }, [])
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.data !== prevState.data) {
-      this.props.setFavouritesRequest(this.state.data)
-    }
-  }
+  useEffect(() => {
+    props.setFavouritesRequest(data)
+  }, [data])
 
-  handleChange = e => {
+  const handleChange = e => {
     //just add to the store
-    this.props.setInput(e.target.value)
+    props.setInput(e.target.value)
   }
 
-  render() {
-    return (
-      <Wrapper>
-        <Title>FAVOURITES</Title>
-        <SubTitle>Feel free to work with your favourited cities!</SubTitle>
-        <Input onChange={this.handleChange} className="input" />
-        <div>
-          {this.props.filteredInfo.map((single, index) => (
-            <div key={single.woeid}>
-              <DataLink to={`../detailed_search/${single.woeid}`}>
-                {single.title}
-              </DataLink>
-              <SingleCity
-                key={single.woeid}
-                location_type={single.location_type}
-                latt_long={single.latt_long}
-                buttonName="Unfavourite me!"
-                buttonDisabled={false}
-                handleFavourite={() => {
-                  const semiData = this.state.data.slice()
-                  semiData.splice(index, 1)
-                  this.setState({ data: semiData })
-                }}
-              />
-            </div>
-          ))}
-        </div>
-      </Wrapper>
-    )
-  }
+  return (
+    <Wrapper>
+      <Title>FAVOURITES</Title>
+      <SubTitle>Feel free to work with your favourited cities!</SubTitle>
+      <Input onChange={handleChange} className="input" />
+      <div>
+        {props.filteredInfo.map((single, index) => (
+          <div key={single.woeid}>
+            <DataLink
+              data-testid="singleFavouritedCity"
+              to={`../detailed_search/${single.woeid}`}
+            >
+              {single.title}
+            </DataLink>
+            <SingleCity
+              key={single.woeid}
+              location_type={single.location_type}
+              latt_long={single.latt_long}
+              buttonName="Unfavourite me!"
+              buttonDisabled={false}
+              handleFavourite={() => {
+                const semiData = data.slice()
+                semiData.splice(index, 1)
+                setData(semiData)
+              }}
+            />
+          </div>
+        ))}
+      </div>
+    </Wrapper>
+  )
 }
 
 const mapDispatchToProps = {
   getFavouritesRequest,
   setFavouritesRequest,
-  setInput
+  setInput,
 }
 
 export default connect(
   R.applySpec({
     items: getItems,
     inputInfo: getInputInfo,
-    filteredInfo: getFilteredInfo
+    filteredInfo: getFilteredInfo,
   }),
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Favourites)

@@ -1,7 +1,7 @@
 import React from 'react'
 import SingleCitySearch from '../screens/WeatherSearch'
 import { Route, Switch } from 'react-router-dom'
-import Navigation from '../screens/Navigation'
+import Navigation from '../commons/Navigation'
 import DetailedCitySearch from '../screens/CityWeatherSearch'
 import Favourites from '../screens/Favourites'
 import styled from 'styled-components'

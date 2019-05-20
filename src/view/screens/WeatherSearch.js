@@ -5,7 +5,7 @@ import {
   setFavouritesRequest,
   getItems,
 } from '../../modules/favourites/'
-import SingleCity from './WeatherInfo'
+import SingleCity from '../commons/WeatherInfo'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import * as R from 'ramda'

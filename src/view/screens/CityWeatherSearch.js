@@ -1,14 +1,14 @@
-import React, { Component } from "react"
-import { connect } from "react-redux"
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import {
   fetchCityWeatherRequest,
   getCityIsLoading,
   getCityWeatherInfo,
   setIsLoading
-} from "../../modules/cityWeather"
-import DetailedCity from "../layouts/CityWeatherInfo"
-import * as R from "ramda"
-import styled from "styled-components"
+} from "../../modules/cityWeather";
+import DetailedCity from "../layouts/CityWeatherInfo";
+import * as R from "ramda";
+import styled from "styled-components";
 
 const Table = styled.table`
   display: flex;
@@ -19,47 +19,45 @@ const Table = styled.table`
   background: #fffefe;
   width: 762px;
   border: 4px solid gray;
-`
+`;
 
-class DetailedCitySearch extends Component {
-  componentDidMount() {
-    this.props.fetchCityWeatherRequest(this.props.match.params.cityId)
-    this.props.setIsLoading(true)
-  }
+const DetailedCitySearch = props => {
+  useEffect(() => {
+    props.fetchCityWeatherRequest(props.match.params.cityId);
+    props.setIsLoading(true);
+  }, []);
 
-  render() {
-    const { isLoading, cityWeatherInfo } = this.props
-    return (
-      <div>
-        {!isLoading ? (
-          <Table>
-            {cityWeatherInfo.map(detailed => (
-              <DetailedCity
-                data-testid="lkdasjflkdsajfldska"
-                key={detailed.id}
-                applicable_date={detailed.applicable_date}
-                weather_state_name={detailed.weather_state_name}
-                weather_state_abbr={detailed.weather_state_abbr}
-                wind_speed={detailed.wind_speed}
-                wind_direction={detailed.wind_direction}
-                min_temp={detailed.min_temp}
-                the_temp={detailed.the_temp}
-                max_temp={detailed.max_temp}
-              />
-            ))}
-          </Table>
-        ) : (
-          "Loading"
-        )}
-      </div>
-    )
-  }
-}
+  const { isLoading, cityWeatherInfo } = props;
+  return (
+    <div>
+      {!isLoading ? (
+        <Table>
+          {cityWeatherInfo.map(detailed => (
+            <DetailedCity
+              data-testid="lkdasjflkdsajfldska"
+              key={detailed.id}
+              applicable_date={detailed.applicable_date}
+              weather_state_name={detailed.weather_state_name}
+              weather_state_abbr={detailed.weather_state_abbr}
+              wind_speed={detailed.wind_speed}
+              wind_direction={detailed.wind_direction}
+              min_temp={detailed.min_temp}
+              the_temp={detailed.the_temp}
+              max_temp={detailed.max_temp}
+            />
+          ))}
+        </Table>
+      ) : (
+        "Loading"
+      )}
+    </div>
+  );
+};
 
 const mapDispatchToProps = {
   fetchCityWeatherRequest,
   setIsLoading
-}
+};
 
 export default connect(
   R.applySpec({
@@ -67,4 +65,4 @@ export default connect(
     cityWeatherInfo: getCityWeatherInfo
   }),
   mapDispatchToProps
-)(DetailedCitySearch)
+)(DetailedCitySearch);

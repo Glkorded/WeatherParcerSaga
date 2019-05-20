@@ -1,5 +1,5 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react'
+import styled from 'styled-components'
 
 const TableBody = styled.tbody`
   display: flex;
@@ -12,7 +12,7 @@ const TableData = styled.td`
   color: gray;
   font-size: 22px;
   font-weight: bold;
-  font-family: "KoHo", sans-serif;
+  font-family: 'KoHo', sans-serif;
   text-decoration: none;
 `
 
@@ -40,7 +40,7 @@ const DetailedCity = ({
   wind_speed,
   min_temp,
   the_temp,
-  max_temp
+  max_temp,
 }) => {
   return (
     <TableBody>
@@ -59,7 +59,7 @@ const DetailedCity = ({
         <TableData>
           Wind direction:
           <WindPointerImage
-            src={require(`src/view/images/windarrow.svg`)}
+            src={require(`../images/windarrow.svg`)}
             alt={wind_direction_compass}
             rotateDegree={wind_direction.toFixed(0)}
           />

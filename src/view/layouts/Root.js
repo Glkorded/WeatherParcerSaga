@@ -1,9 +1,9 @@
 import React from 'react'
-import SingleCitySearch from './view/screens/WeatherSearch'
+import SingleCitySearch from '../screens/WeatherSearch'
 import { Route, Switch } from 'react-router-dom'
-import Navigation from './view/layouts/Navigation'
-import DetailedCitySearch from './view/screens/CityWeatherSearch'
-import Favourites from './view/screens/Favourites'
+import Navigation from './Navigation'
+import DetailedCitySearch from '../screens/CityWeatherSearch'
+import Favourites from '../screens/Favourites'
 import styled from 'styled-components'
 
 const Background = styled.div`
@@ -14,7 +14,7 @@ const Background = styled.div`
   width: auto;
 `
 
-const App = () => (
+const Root = () => (
   <Background imgSrc={'../images/background.jpg'}>
     <Navigation />
     <Switch>
@@ -29,4 +29,4 @@ const App = () => (
   </Background>
 )
 
-export default App
+export default Root

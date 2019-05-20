@@ -40,10 +40,12 @@ const Navigation = () => {
     <Footer>
       <List>
         <ListElement>
-          <LinkElement to="/">Search</LinkElement>
+          <LinkElement data-testid="searchNavigation" to="/">Search</LinkElement>
         </ListElement>
         <ListElement>
-          <LinkElement to="/favourites/">Favourites</LinkElement>
+          <LinkElement data-testid="favouritesNavigation" to="/favourites/">
+            Favourites
+          </LinkElement>
         </ListElement>
       </List>
     </Footer>

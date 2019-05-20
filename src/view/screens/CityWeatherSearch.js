@@ -34,7 +34,6 @@ const DetailedCitySearch = props => {
         <Table>
           {cityWeatherInfo.map(detailed => (
             <DetailedCity
-              data-testid="lkdasjflkdsajfldska"
               key={detailed.id}
               applicable_date={detailed.applicable_date}
               weather_state_name={detailed.weather_state_name}

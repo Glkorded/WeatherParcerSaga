@@ -3,7 +3,7 @@ import { setFavouritesSuccess, setFavouritesRequest } from "./duck"
 import * as Repository from "./Repository"
 
 const getFavouritesSaga = function*() {
-  const data = yield call(Repository.getFavourites) //here we get localstorage
+  const data = yield call(Repository.getFavourites);//here we get localstorage
   yield put(setFavouritesSuccess(data))
 }
 

@@ -86,7 +86,10 @@ const Favourites = props => {
       <div>
         {props.filteredInfo.map((single, index) => (
           <div key={single.woeid}>
-            <DataLink to={`../detailed_search/${single.woeid}`}>
+            <DataLink
+              data-testid="singleFavouritedCity"
+              to={`../detailed_search/${single.woeid}`}
+            >
               {single.title}
             </DataLink>
             <SingleCity

@@ -107,7 +107,10 @@ const SingleCitySearch = props => {
         <div>
           {weatherInfo.map(single => (
             <div key={single.woeid}>
-              <DataLink to={`../detailed_search/${single.woeid}`}>
+              <DataLink
+                data-testid="datalink"
+                to={`../detailed_search/${single.woeid}`}
+              >
                 {single.title}
               </DataLink>
               <SingleCity

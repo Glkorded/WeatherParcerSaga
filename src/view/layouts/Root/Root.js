@@ -1,9 +1,9 @@
 import React from 'react'
-import SingleCitySearch from '../screens/WeatherSearch'
+import SingleCitySearch from '../../screens/WeatherSearch'
 import { Route, Switch } from 'react-router-dom'
-import Navigation from '../commons/Navigation'
-import DetailedCitySearch from '../screens/CityWeatherSearch'
-import Favourites from '../screens/Favourites'
+import Navigation from './Navigation'
+import DetailedCitySearch from '../../screens/CityWeather/CityWeatherSearch'
+import Favourites from '../../screens/Favourites'
 import styled from 'styled-components'
 
 const Background = styled.div`
@@ -15,7 +15,7 @@ const Background = styled.div`
 `
 
 const Root = () => (
-  <Background imgSrc={'../images/background.jpg'}>
+    <Background imgSrc='../images/background.jpg'>
     <Navigation />
     <Switch>
       <Route exact path="/" component={SingleCitySearch} />

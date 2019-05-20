@@ -5,7 +5,7 @@ import {
   getCityIsLoading,
   getCityWeatherInfo,
   setIsLoading,
-} from '../../modules/cityWeather'
+} from '../../../modules/cityWeather'
 import DetailedCity from './CityWeatherInfo'
 import * as R from 'ramda'
 import styled from 'styled-components'

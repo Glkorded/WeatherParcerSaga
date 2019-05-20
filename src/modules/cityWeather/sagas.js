@@ -1,14 +1,11 @@
-import { call, put, takeLatest } from "redux-saga/effects"
-import * as cityWeatherManager from "./Manager"
-import { setCityWeather, fetchCityWeatherRequest, setIsLoading } from "./duck"
+import { call, put, takeLatest } from 'redux-saga/effects'
+import * as cityWeatherManager from './Manager'
+import { setCityWeather, fetchCityWeatherRequest, setIsLoading } from './duck'
 
-const getCityWeatherSaga = function*(action) {
+const getCityWeatherSaga = function*({ payload }) {
   let detailedData
   try {
-    detailedData = yield call(
-      cityWeatherManager.getCityWeatherData,
-      action.payload
-    )
+    detailedData = yield call(cityWeatherManager.getCityWeatherData, payload)
   } catch (err) {
     console.log(err)
     yield put(setIsLoading(false))

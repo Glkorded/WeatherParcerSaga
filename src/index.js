@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import Root from './view/layouts/Root'
+import Root from './view/layouts/Root/Root'
 import store from './modules/store'
 import { BrowserRouter } from 'react-router-dom'
 

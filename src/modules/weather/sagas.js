@@ -1,12 +1,12 @@
-import { call, put, takeLatest } from "redux-saga/effects"
-import * as WeatherManager from "./Manager"
-import { setWeather, fetchWeatherRequest, setIsLoading } from "./duck"
+import { call, put, takeLatest } from 'redux-saga/effects'
+import * as WeatherManager from './Manager'
+import { setWeather, fetchWeatherRequest, setIsLoading } from './duck'
 
 // TODO: rename with fetch
-export const fetchWeatherSaga = function*(action) {
+export const fetchWeatherSaga = function*({ payload }) {
   let data
   try {
-    data = yield call(WeatherManager.fetchWeatherData, action.payload)
+    data = yield call(WeatherManager.fetchWeatherData, payload)
   } catch (err) {
     console.log(err)
     yield put(setIsLoading(false))

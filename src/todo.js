@@ -11,7 +11,7 @@
 //TODO: Change containers/components architecture //DONE
 //TODO: Single source of truth for favourites //DONE
 
-//TODO: Test
+//TODO: Test //DONE
 //TODO: Fetches //DONE
 //TODO: Minor rebuild in weather duck //DONE
 //TODO: Probably minor rebuild in cityweather duck //DONE

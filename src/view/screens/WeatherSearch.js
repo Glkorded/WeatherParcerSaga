@@ -120,7 +120,7 @@ const SingleCitySearch = props => {
                 buttonName="Favourite me!"
                 buttonDisabled={disabledCheckFunc(single.woeid)}
                 handleFavourite={() => {
-                  const semiData = favourites.slice()
+                  const semiData = [...favourites]
                   semiData.push(single)
                   setFavourites(semiData)
                   console.log(`${single.title} was added to favourites`)

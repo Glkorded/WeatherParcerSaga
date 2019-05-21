@@ -2,7 +2,6 @@ import { call, put, takeLatest } from 'redux-saga/effects'
 import * as WeatherManager from './Manager'
 import { setWeather, fetchWeatherRequest, setIsLoading } from './duck'
 
-// TODO: rename with fetch
 export const fetchWeatherSaga = function*({ payload }) {
   let data
   try {

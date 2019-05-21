@@ -11,8 +11,6 @@ export const fetchWeatherRequest = createActionWithPrefix(
 export const setWeather = createActionWithPrefix("SET_WEATHER")
 export const fetchWeatherFailure = createActionWithPrefix("GET_WEATHER_FAILURE")
 
-// TODO: rename to item //DONE
-// TODO: on action setWeather //DONE
 export const items = handleAction(
   setWeather,
   (state, { payload }) => payload,
@@ -27,7 +25,6 @@ export const fetchWeatherItems = R.pipe(
 //==========================================================================
 export const setIsLoading = createActionWithPrefix("SET_IS_LOADING")
 
-// TODO: one action
 export const isLoading = handleAction(
   setIsLoading,
   (state, { payload }) => payload,

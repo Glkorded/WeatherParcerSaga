@@ -35,14 +35,7 @@ const DetailedCitySearch = props => {
           {cityWeatherInfo.map(detailed => (
             <DetailedCity
               key={detailed.id}
-              applicable_date={detailed.applicable_date}
-              weather_state_name={detailed.weather_state_name}
-              weather_state_abbr={detailed.weather_state_abbr}
-              wind_speed={detailed.wind_speed}
-              wind_direction={detailed.wind_direction}
-              min_temp={detailed.min_temp}
-              the_temp={detailed.the_temp}
-              max_temp={detailed.max_temp}
+              {...detailed}
             />
           ))}
         </Table>

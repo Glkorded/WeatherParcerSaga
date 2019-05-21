@@ -31,7 +31,6 @@ const WindPointerImage = styled.img`
 // store => middlawares => (next) => action =>
 
 const DetailedCity = ({
-  id,
   applicable_date,
   weather_state_abbr,
   wind_direction_compass,
@@ -41,8 +40,7 @@ const DetailedCity = ({
   min_temp,
   the_temp,
   max_temp,
-}) => {
-  return (
+}) => (
     <TableBody>
       <tr>
         <TableData>Date: {applicable_date} </TableData>
@@ -79,6 +77,6 @@ const DetailedCity = ({
       </tr>
     </TableBody>
   )
-}
+
 
 export default DetailedCity

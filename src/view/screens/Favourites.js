@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import SingleCity from '../commons/WeatherInfo'
@@ -9,6 +9,7 @@ import {
   getFavouritesRequest,
   setFavouritesRequest,
   setInput,
+  deleteFavourite
 } from '../../modules/favourites'
 import * as R from 'ramda'
 import styled from 'styled-components'
@@ -62,19 +63,8 @@ const Input = styled.input`
 `
 
 const Favourites = props => {
-  const [data, setData] = useState([])
-
-  useEffect(() => {
-    props.getFavouritesRequest()
-    setData(props.items)
-  }, [])
-
-  useEffect(() => {
-    props.setFavouritesRequest(data)
-  }, [data])
 
   const handleChange = e => {
-    //just add to the store
     props.setInput(e.target.value)
   }
 
@@ -84,7 +74,7 @@ const Favourites = props => {
       <SubTitle>Feel free to work with your favourited cities!</SubTitle>
       <Input onChange={handleChange} className="input" />
       <div>
-        {props.filteredInfo.map((single, index) => (
+        {props.filteredInfo.map((single) => (
           <div key={single.woeid}>
             <DataLink
               data-testid="singleFavouritedCity"
@@ -99,9 +89,7 @@ const Favourites = props => {
               buttonName="Unfavourite me!"
               buttonDisabled={false}
               handleFavourite={() => {
-                const semiData = data.slice()
-                semiData.splice(index, 1)
-                setData(semiData)
+                props.deleteFavourite(single.woeid)
               }}
             />
           </div>
@@ -111,17 +99,16 @@ const Favourites = props => {
   )
 }
 
-const mapDispatchToProps = {
-  getFavouritesRequest,
-  setFavouritesRequest,
-  setInput,
-}
-
 export default connect(
   R.applySpec({
     items: getItems,
     inputInfo: getInputInfo,
     filteredInfo: getFilteredInfo,
   }),
-  mapDispatchToProps,
+  {
+    getFavouritesRequest,
+    setFavouritesRequest,
+    setInput,
+    deleteFavourite
+  },
 )(Favourites)

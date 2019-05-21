@@ -1,4 +1,4 @@
-import { createAction, handleAction } from 'redux-actions'
+import { createAction, handleAction, handleActions } from 'redux-actions'
 import { combineReducers } from 'redux'
 import * as R from 'ramda'
 import { createSelector } from 'reselect'
@@ -14,18 +14,21 @@ export const getFavouritesRequest = createActionWithPrefix(
 export const setFavouritesSuccess = createActionWithPrefix(
   'GET_FAVOURITES_SUCCESS',
 )
-export const getFavouritesFailure = createActionWithPrefix(
-  'GET_FAVOURITES_FAILURE',
-)
+
 export const setFavouritesRequest = createActionWithPrefix(
   'SET_FAVOURITES_REQUEST',
 )
 
-// TODO: one action
-export const items = handleAction(
-  setFavouritesSuccess,
-  (state, { payload }) => payload,
-  [],
+export const deleteFavourite = createActionWithPrefix(
+  'DELETE_FAVOURITE'
+)
+
+export const items = handleActions(
+  {
+    [setFavouritesSuccess]: (state, { payload }) => payload,
+    [deleteFavourite]: (state, { payload }) => state.filter(x => x.woeid !== payload),
+  },
+    []
 )
 
 export const getItems = R.pipe(

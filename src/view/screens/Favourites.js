@@ -3,13 +3,12 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import SingleCity from '../commons/WeatherInfo'
 import {
-  getItems,
   getInputInfo,
   getFilteredInfo,
   getFavouritesRequest,
   setFavouritesRequest,
   setInput,
-  deleteFavourite
+  deleteFavourite,
 } from '../../modules/favourites'
 import * as R from 'ramda'
 import styled from 'styled-components'
@@ -63,9 +62,10 @@ const Input = styled.input`
 `
 
 const Favourites = props => {
+  const { setInput, deleteFavourite, filteredInfo } = props
 
   const handleChange = e => {
-    props.setInput(e.target.value)
+    setInput(e.target.value)
   }
 
   return (
@@ -74,7 +74,7 @@ const Favourites = props => {
       <SubTitle>Feel free to work with your favourited cities!</SubTitle>
       <Input onChange={handleChange} className="input" />
       <div>
-        {props.filteredInfo.map((single) => (
+        {filteredInfo.map(single => (
           <div key={single.woeid}>
             <DataLink
               data-testid="singleFavouritedCity"
@@ -89,7 +89,7 @@ const Favourites = props => {
               buttonName="Unfavourite me!"
               buttonDisabled={false}
               handleFavourite={() => {
-                props.deleteFavourite(single.woeid)
+                deleteFavourite(single.woeid)
               }}
             />
           </div>
@@ -101,7 +101,6 @@ const Favourites = props => {
 
 export default connect(
   R.applySpec({
-    items: getItems,
     inputInfo: getInputInfo,
     filteredInfo: getFilteredInfo,
   }),
@@ -109,6 +108,6 @@ export default connect(
     getFavouritesRequest,
     setFavouritesRequest,
     setInput,
-    deleteFavourite
+    deleteFavourite,
   },
 )(Favourites)

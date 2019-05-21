@@ -9,7 +9,6 @@ export const fetchWeatherRequest = createActionWithPrefix(
   "FETCH_WEATHER_REQUEST"
 )
 export const setWeather = createActionWithPrefix("SET_WEATHER")
-export const fetchWeatherFailure = createActionWithPrefix("GET_WEATHER_FAILURE")
 
 export const items = handleAction(
   setWeather,

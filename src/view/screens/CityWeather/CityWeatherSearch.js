@@ -22,25 +22,29 @@ const Table = styled.table`
 `
 
 const DetailedCitySearch = props => {
+  const {
+    fetchCityWeatherRequest,
+    match,
+    setIsLoading,
+    isLoading,
+    cityWeatherInfo,
+  } = props
+
   useEffect(() => {
-    props.fetchCityWeatherRequest(props.match.params.cityId)
-    props.setIsLoading(true)
+    fetchCityWeatherRequest(match.params.cityId)
+    setIsLoading(true)
   }, [])
 
-  const { isLoading, cityWeatherInfo } = props
   return (
     <div>
-      {!isLoading ? (
+      {isLoading ? (
+        'Loading'
+      ) : (
         <Table>
           {cityWeatherInfo.map(detailed => (
-            <DetailedCity
-              key={detailed.id}
-              {...detailed}
-            />
+            <DetailedCity key={detailed.id} {...detailed} />
           ))}
         </Table>
-      ) : (
-        'Loading'
       )}
     </div>
   )

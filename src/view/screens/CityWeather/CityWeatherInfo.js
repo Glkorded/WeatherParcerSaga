@@ -28,8 +28,6 @@ const WindPointerImage = styled.img`
   transform: rotate(${props => props.rotateDegree}deg);
 `
 
-// store => middlawares => (next) => action =>
-
 const DetailedCity = ({
   applicable_date,
   weather_state_abbr,
@@ -77,6 +75,5 @@ const DetailedCity = ({
       </tr>
     </TableBody>
   )
-
 
 export default DetailedCity

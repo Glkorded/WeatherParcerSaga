@@ -65,10 +65,13 @@ const Input = styled.input`
 `
 
 const SingleCitySearch = props => {
+  const { isLoading, weatherInfo, fetchWeatherRequest, setIsLoading, reducerFavourites } = props
+
   const [favourites, setFavourites] = useState([])
 
+
   const handleChange = e => {
-    props.fetchWeatherRequest(e.target.value)
+    fetchWeatherRequest(e.target.value)
   }
 
   const disabledCheckFunc = elem => {
@@ -78,18 +81,17 @@ const SingleCitySearch = props => {
   } //Function to check whether city is favourited
 
   useEffect(() => {
-    props.fetchWeatherRequest('San')
-    props.setIsLoading(true)
-    if (props.getItems !== null) {
-      setFavourites(props.items)
+    fetchWeatherRequest('San')
+    setIsLoading(true)
+    if (reducerFavourites !== null) {
+      setFavourites(reducerFavourites)
     }
   }, [])
 
   useEffect(() => {
-    props.setFavouritesRequest(favourites)
+    setFavouritesRequest(favourites)
   }, [favourites])
 
-  const { isLoading, weatherInfo } = props
 
   return (
     <Wrapper>
@@ -103,9 +105,11 @@ const SingleCitySearch = props => {
         onChange={handleChange}
         className="input"
       />
-      {!isLoading ? (
+      {isLoading ? (
+        <p>Loading…</p>
+      ) : (
         <div>
-          {weatherInfo.map(single => (
+        {weatherInfo.map(single => (
             <div key={single.woeid}>
               <DataLink
                 data-testid="datalink"
@@ -128,26 +132,21 @@ const SingleCitySearch = props => {
               />
             </div>
           ))}
-        </div>
-      ) : (
-        <p>Loading…</p>
-      )}
+        </div>)}
     </Wrapper>
   )
-}
-
-const mapDispatchToProps = {
-  fetchWeatherRequest,
-  getFavouritesRequest,
-  setFavouritesRequest,
-  setIsLoading,
 }
 
 export default connect(
   R.applySpec({
     isLoading: fetchWeatherIsLoading,
     weatherInfo: fetchWeatherItems,
-    items: getItems,
+    reducerFavourites: getItems,
   }),
-  mapDispatchToProps,
+  {
+    fetchWeatherRequest,
+    getFavouritesRequest,
+    setFavouritesRequest,
+    setIsLoading,
+  },
 )(SingleCitySearch)
